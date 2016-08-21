@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include afnan *.css
+recursive-include afnan *.csv
+recursive-include afnan *.html
+recursive-include afnan *.ico
+recursive-include afnan *.js
+recursive-include afnan *.json
+recursive-include afnan *.md
+recursive-include afnan *.png
+recursive-include afnan *.py
+recursive-include afnan *.svg
+recursive-include afnan *.txt
+recursive-exclude afnan *.pyc
