@@ -7,4 +7,6 @@ import frappe
 from frappe.model.document import Document
 
 class calculation(Document):
-	pass
+	def validate(self):
+		self.area = self.width*self.height
+		self.circumference = (self.width+self.height)*2
