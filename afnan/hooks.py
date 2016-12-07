@@ -11,6 +11,8 @@ app_color = "grey"
 app_email = "mhbu50@gmail.com"
 app_license = "MIT"
 
+fixtures = ["Custom Field"]
+
 # Includes in <head>
 # ------------------
 
@@ -110,4 +112,3 @@ app_license = "MIT"
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "afnan.event.get_events"
 # }
-
