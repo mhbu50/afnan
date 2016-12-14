@@ -11,7 +11,7 @@ app_color = "grey"
 app_email = "mhbu50@gmail.com"
 app_license = "MIT"
 
-fixtures = ["Custom Field"]
+ fixtures = ["Custom Field"]
 
 # Includes in <head>
 # ------------------
