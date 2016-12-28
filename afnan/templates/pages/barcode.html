@@ -1,0 +1,46 @@
+<html>
+<style>
+    .cont {
+        width: 100%;
+        height: 100%;
+        margin: 0in .0in;
+    }
+
+    .label {
+        /* Avery 5160 labels -- CSS and HTML by MM at Boulder Information Services */
+        width: calc(100%/3);
+        /* plus .6 inches from padding */
+        height: calc(100%/8);
+        /* plus .125 inches from padding */
+        /*margin-right: .11in;*/
+        /* the gutter */
+        float: left;
+        text-align: center;
+        overflow: hidden;
+        outline: 1px dotted;
+        /* outline doesn't occupy space like border does */
+    }
+
+    .page-break {
+        clear: left;
+        display: block;
+        page-break-after: always;
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        $('.label').on('click', function() {
+            var $img = $(this).children()[0];
+            $($img).toggle('slow');
+        });
+        var startIndex = 0;
+        var endIndex = 24;
+        for (startIndex; startIndex < endIndex; startIndex++) {
+            $(".cont").append("<div class='label'><img src='http://www.barcodes4.me/barcode/c39/" + encodeURIComponent("ff-342") + ".png?width=180&height=70&IsTextDrawn=1'/></div>");
+        }
+        $(".cont ").append("< div class = 'page-break' > </div>");
+    });
+</script>
+<div class='cont'></div>
+
+</html>

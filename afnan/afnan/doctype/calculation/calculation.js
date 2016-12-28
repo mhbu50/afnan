@@ -94,6 +94,15 @@ frappe.ui.form.on("calculation", {
             console.log($(this).hasClass("collapsed"));
         });
     },
+    refresh: function(frm) {
+
+        // frm.add_custom_button(__('Invoice'), function() {
+        //     frappe.model.open_mapped_doc({
+        //         method: "afnan.afnan.doctype.calculation.calculation.make_invoice",
+        //         frm: cur_frm
+        //     })
+        // });
+    },
     onload: function(frm) {
         if (frm.doc.type === "برواز و زجاج") {
             frm.toggle_reqd("b_width", true);
@@ -263,8 +272,8 @@ frappe.ui.form.on("calculation", {
         } else if (frm.doc.wood === "4x4") {
             wood = 2 * 23;
         }
-        canvas_price =((frm.doc.c_height + 10)/100 * (frm.doc.c_width + 10)/100) * 65
-  			wood_price  = (frm.doc.c_height /100 + frm.doc.c_width /100) * wood
+        canvas_price = ((frm.doc.c_height + 10) / 100 * (frm.doc.c_width + 10) / 100) * 65
+        wood_price = (frm.doc.c_height / 100 + frm.doc.c_width / 100) * wood
         frappe.model.set_value("calculation", frm.doc.name, "price", canvas_price + wood_price);
     }
 
@@ -491,3 +500,65 @@ frappe.ui.form.on("Item", "print_barcode",
         dialog.show();
 
     });
+//////////////////////////
+
+frappe.ui.form.on("Sales Invoice", {
+    get_calculation: function(frm) {
+        var dialog = new frappe.ui.Dialog({
+            title: __("Set as Lost"),
+            fields: [{
+                "fieldtype": "Link",
+                "label": __("أختر رقم القياس"),
+                "fieldname": "calc",
+                "reqd": 1,
+                "options": "calculation"
+            }, {
+                "fieldtype": "Button",
+                "label": __("اختر"),
+                "fieldname": "update"
+            }, ]
+        });
+        dialog.fields_dict.update.$input.click(function() {
+            arg = dialog.fields_list[0].input.value;
+            if (!arg) return;
+            return frappe.call({
+                method: "frappe.client.get",
+                args: {
+                    "doctype": "calculation",
+                    "name": arg
+                },
+                callback: function(r) {
+                    var row_name ="";
+                    if (frm.doc.items[0].item_code === undefined) {
+                      row_name= "New Sales Invoice Item 1";
+                    }else {
+                      row = frappe.model.add_child(frm.doc, 'Sales Invoice Item', "items");
+                      row_name = row.name;
+                    }
+                        if (r.message.total_m_price || r.message.total_f_price) {
+                            frappe.model.set_value("Sales Invoice Item", row_name, "item_code", "عمل برواز");
+                            setTimeout(function() {
+                                frappe.model.set_value("Sales Invoice Item", row_name, "qty", (r.message.quantity_f));
+                                frappe.model.set_value("Sales Invoice Item", row_name, "rate", (r.message.total_m_price + r.message.total_f_price));
+                            }, 100);
+                        } else if (r.message.total_g_price) {
+                            frappe.model.set_value("Sales Invoice Item", row_name, "item_code", "عمل زجاج");
+                            setTimeout(function() {
+                                frappe.model.set_value("Sales Invoice Item", row_name, "qty", (r.message.quantity_g));
+                                frappe.model.set_value("Sales Invoice Item", row_name, "rate", r.message.total_g_price);
+                            }, 100);
+                        } else if (r.message.type == "كانفاس") {
+                            frappe.model.set_value("Sales Invoice Item", row_name, "item_code", "عمل كانفاس");
+                            setTimeout(function() {
+                                frappe.model.set_value("Sales Invoice Item", row_name, "qty", (r.message.quantity_c));
+                                frappe.model.set_value("Sales Invoice Item", row_name, "rate", r.message.price);
+                            }, 100);
+                        }
+                    dialog.hide();
+                },
+                btn: this
+            });
+        });
+        dialog.show();
+    }
+});

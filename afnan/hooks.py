@@ -4,21 +4,32 @@ from . import __version__ as app_version
 
 app_name = "afnan"
 app_title = "Afnan"
-app_publisher = "accurate systems"
+app_publisher = "Accurate Systems"
 app_description = "Afnan calculation App"
 app_icon = "octicon octicon-file-directory"
 app_color = "grey"
-app_email = "mhbu50@gmail.com"
-app_license = "MIT"
+app_email = "mohammed.r@accuratesystems.com.sa"
+app_license = "GPL"
 
- fixtures = ["Custom Field"]
+fixtures = [ {
+	"doctype": "Custom Field",
+	"filters":	{
+		"name": ["in", ["Sales Invoice-get_calculation","Item-print_barcode","Item-color"," Item-height","Item-width"]]
+	}
+},{
+	"doctype": "Custom Script",
+	"filters":	{
+		"name": ["in", ["Sales Invoice-Client"," Item-Client"]]
+	}
+}
+]
 
 # Includes in <head>
 # ------------------
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/afnan/css/afnan.css"
-# app_include_js = "/assets/afnan/js/afnan.js"
+app_include_js = "assets/js/afnan.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/afnan/css/afnan.css"
