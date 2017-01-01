@@ -14,7 +14,7 @@ app_license = "GPL"
 fixtures = [ {
 	"doctype": "Custom Field",
 	"filters":	{
-		"name": ["in", ["Sales Invoice-get_calculation","Item-print_barcode","Item-color"," Item-height","Item-width"]]
+		"name": ["in", ["Sales Invoice-get_calculation","Item-print_barcode","Item-color"," Item-height","Item-width","Sales Invoice-barcode"]]
 	}
 },{
 	"doctype": "Custom Script",
