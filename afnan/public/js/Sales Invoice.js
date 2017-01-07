@@ -1,7 +1,7 @@
 frappe.ui.form.on("Sales Invoice", {
     onload: function(frm) {
         if (frm.doc.__islocal) {
-            frappe.model.set_value("Sales Invoice", frm.doc.name, "customer", "gfd");
+            frappe.model.set_value("Sales Invoice", frm.doc.name, "customer", "عميل عابر");
         }
     },
     get_calculation: function(frm) {
