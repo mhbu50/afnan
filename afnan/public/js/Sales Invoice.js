@@ -2,7 +2,12 @@ frappe.ui.form.on("Sales Invoice", {
     onload: function(frm) {
         if (frm.doc.__islocal) {
             frappe.model.set_value("Sales Invoice", frm.doc.name, "customer", "عميل عابر");
+            frm.toggle_display("print_barcode", false);
+
+        }else{
+            frm.toggle_display("print_barcode", true);
         }
+
     },
     get_calculation: function(frm) {
         var dialog = new frappe.ui.Dialog({
@@ -105,7 +110,7 @@ frappe.ui.form.on("Sales Invoice", {
             });
         }, 100);
 
-        dialog.set_primary_action(__("Print"), function() {
+        dialog.set_primary_action(__("طباعة"), function() {
 
             var printContents = $(dialog.fields_dict['reason'].wrapper).html();
             // printContents = printContents.replace("width: inherit","width: 8.27in");
