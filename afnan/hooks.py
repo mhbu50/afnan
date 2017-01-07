@@ -14,14 +14,17 @@ app_license = "GPL"
 fixtures = [ {
 	"doctype": "Custom Field",
 	"filters":	{
-		"name": ["in", ["Sales Invoice-get_calculation","Item-print_barcode","Item-color"," Item-height","Item-width","Sales Invoice-barcode"]]
+		"name": ["in", ["Sales Invoice-get_calculation","Sales Invoice-print_barcode",
+        "Item-print_barcode","Item-color"," Item-height","Item-width"]]
 	}
-},{
-	"doctype": "Custom Script",
+},
+{
+	"doctype": "Print Format",
 	"filters":	{
-		"name": ["in", ["Sales Invoice-Client"," Item-Client"]]
+		"name": ["in", ["Afnan Sales Report"]]
 	}
 }
+
 ]
 
 # Includes in <head>

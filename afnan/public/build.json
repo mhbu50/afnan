@@ -1,5 +1,7 @@
 {
     "js/afnan.js": [
-        "public/js/barcode.html"
+        "public/js/barcode.html",
+        "public/js/Sales Invoice.js",
+        "public/js/Item.js"
     ]
 }
