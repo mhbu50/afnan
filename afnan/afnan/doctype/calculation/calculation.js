@@ -51,7 +51,7 @@ function update_total_m_price(frm) {
     if (frm.doc.sub_mating)
         frm.doc.sub_mating.forEach(function(d) {
             diff = diff + d.m_diff * 2;
-        })
+        });
     console.log("frm.doc.in_h= " + frm.doc.in_h + " frm.doc.in_w = " + frm.doc.in_w + " frm.doc.mating_price = " + frm.doc.mating_price);
     m_price = (frm.doc.in_h + diff) / 100 * (frm.doc.in_w + diff) / 100 * frm.doc.mating_price;
     if (frm.doc.sub_mating) {
@@ -272,8 +272,8 @@ frappe.ui.form.on("calculation", {
         } else if (frm.doc.wood === "4x4") {
             wood = 2 * 23;
         }
-        canvas_price = ((frm.doc.c_height + 10) / 100 * (frm.doc.c_width + 10) / 100) * 65
-        wood_price = (frm.doc.c_height / 100 + frm.doc.c_width / 100) * wood
+        canvas_price = ((frm.doc.c_height + 10) / 100 * (frm.doc.c_width + 10) / 100) * 65;
+        wood_price = (frm.doc.c_height / 100 + frm.doc.c_width / 100) * wood;
         frappe.model.set_value("calculation", frm.doc.name, "price", canvas_price + wood_price);
     }
 
@@ -424,7 +424,7 @@ function calc_glass_operation(frm) {
     var price = 0;
     frm.doc.sides.forEach(function(d) {
         // debugger;
-        console.log("d", d);
+        //console.log("d", d);
         if (d.beveled && !d.letter) {
             if (d.side == "أعلى" || d.side == "أسفل") {
                 price = price + Price_Settings.beveled * frm.doc.g_width;

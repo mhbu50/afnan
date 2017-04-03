@@ -4,7 +4,7 @@ frappe.ui.form.on("Sales Invoice", {
             frappe.model.set_value("Sales Invoice", frm.doc.name, "customer", "عميل عابر");
             frm.toggle_display("print_barcode", false);
 
-        }else{
+        } else {
             frm.toggle_display("print_barcode", true);
         }
 
@@ -50,8 +50,10 @@ frappe.ui.form.on("Sales Invoice", {
                     } else if (r.message.total_g_price) {
                         frappe.model.set_value("Sales Invoice Item", row_name, "item_code", "عمل زجاج");
                         setTimeout(function() {
-                            frappe.model.set_value("Sales Invoice Item", row_name, "qty", (r.message.quantity_g));
+                            frappe.model.set_value("Sales Invoice Item", row_name, "qty", r.message.quantity_g);
                             frappe.model.set_value("Sales Invoice Item", row_name, "rate", r.message.total_g_price);
+                            frappe.model.set_value("Sales Invoice Item", row_name, "height", r.message.g_height);
+                            frappe.model.set_value("Sales Invoice Item", row_name, "width", r.message.g_width);
                         }, 100);
                     } else if (r.message.type == "كانفاس") {
                         frappe.model.set_value("Sales Invoice Item", row_name, "item_code", "عمل كانفاس");
