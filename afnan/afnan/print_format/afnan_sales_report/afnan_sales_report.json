@@ -1,0 +1,22 @@
+{
+ "align_labels_left": 1, 
+ "creation": "2017-04-24 20:34:44.451131", 
+ "custom_format": 0, 
+ "disabled": 0, 
+ "doc_type": "Sales Invoice", 
+ "docstatus": 0, 
+ "doctype": "Print Format", 
+ "font": "Default", 
+ "format_data": "[{\"fieldname\": \"print_heading_template\", \"fieldtype\": \"Custom HTML\", \"options\": \"<div class=\\\"print-heading\\\">\\t\\t\\t\\t<h2>Sales Invoice\\n<br> \\n<small>{{ doc.name }}</small>\\n</h2>\\n<div style=\\\"text-align: left\\\"><img src=\\\"http://www.barcodes4.me/barcode/c128a/ {{doc.name}}.png?width=200&amp;height=100&amp;IsTextDrawn=1\\\" style=\\\"text-align: left;\\\"></div>\\n</div>\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"print_hide\": 0, \"fieldname\": \"customer_name\", \"label\": \"Customer Name\"}, {\"fieldtype\": \"Column Break\"}, {\"print_hide\": 0, \"fieldname\": \"posting_date\", \"label\": \"Date\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"visible_columns\": [{\"print_hide\": 0, \"fieldname\": \"item_code\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"desc\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"height\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"width\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"rate\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"qty\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"amount\", \"print_width\": \"\"}], \"print_hide\": 0, \"fieldname\": \"items\", \"label\": \"Items\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldtype\": \"Column Break\"}, {\"print_hide\": 0, \"fieldname\": \"total\", \"label\": \"Total\"}, {\"print_hide\": 0, \"fieldname\": \"rounded_total\", \"label\": \"Rounded Total\"}, {\"fieldtype\": \"Section Break\", \"label\": \"Terms\"}, {\"fieldtype\": \"Column Break\"}, {\"print_hide\": 0, \"fieldname\": \"terms\", \"label\": \"Terms and Conditions Details\"}]", 
+ "idx": 0, 
+ "line_breaks": 0, 
+ "modified": "2017-04-27 00:24:37.868994", 
+ "modified_by": "Administrator", 
+ "module": "Afnan", 
+ "name": "Afnan Sales Report", 
+ "owner": "Administrator", 
+ "print_format_builder": 1, 
+ "print_format_type": "Server", 
+ "show_section_headings": 0, 
+ "standard": "Yes"
+}

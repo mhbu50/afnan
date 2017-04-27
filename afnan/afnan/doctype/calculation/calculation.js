@@ -22,6 +22,7 @@ function get_m_diff(frm) {
 }
 
 function calc_in_h(frm) {
+  debugger;
     var m_diff = get_m_diff(frm);
     frm.set_value('in_h', frm.doc.b_height + frm.doc.right + frm.doc.left + (m_diff * 2));
 
@@ -32,6 +33,7 @@ function calc_in_h(frm) {
 
 function calc_in_w(frm) {
     var m_diff = get_m_diff(frm);
+    console.log("frm.doc.b_width = "+ frm.doc.b_width+ "frm.doc.up = "+ frm.doc.up +" (m_diff * 2) = "+ (m_diff * 2));
     frm.set_value('in_w', frm.doc.b_width + frm.doc.up + frm.doc.down + (m_diff * 2));
     if (frm.doc.is_for_borad == 1) {
         frappe.model.set_value("calculation", frm.doc.name, "g_width", frm.doc.in_w);
@@ -61,6 +63,7 @@ function update_total_m_price(frm) {
     }
     console.log("m_price = " + m_price + " total_m_price = " + total_m_price + " val = " + parseInt(total_m_price + m_price));
     frappe.model.set_value("calculation", frm.doc.name, "total_m_price", parseFloat(total_m_price + m_price));
+    update_final_price(frm);
 }
 
 function check_h_w(frm) {
@@ -89,7 +92,7 @@ frappe.ui.form.on("calculation", {
             function() {
                 return $(this).text() == "ماتنق";
             }).parent();
-        console.log("section head", section_head);
+        // console.log("section head", section_head);
         section_head.on("click", function() {
             console.log($(this).hasClass("collapsed"));
         });
@@ -130,23 +133,7 @@ frappe.ui.form.on("calculation", {
         }
         //to load Price_Settings data on saved calculation
         if (frm.doc.glass_type)
-            frappe.call({
-                "method": "frappe.client.get",
-                args: {
-                    doctype: "Price Settings",
-                    filters: {
-                        "item": frm.doc.glass_type
-                    },
-                },
-                callback: function(data) {
-                    Price_Settings = data.message;
-                    meter_price = frm.doc.g_area * Price_Settings.price_square;
-                    beveled_letter = (frm.doc.g_width * 2 + frm.doc.g_height * 2) * Price_Settings.beveled_letter;
-                    full_beveled = (frm.doc.g_width * 2 + frm.doc.g_height * 2) * Price_Settings.beveled;
-                    full_letter = (frm.doc.g_width * 2 + frm.doc.g_height * 2) * Price_Settings.letter;
-                    anti_braek = frm.doc.g_area * Price_Settings.anti_braek;
-                }
-            });
+            get_price_settings(frm);
     },
     type: function(frm) {
         if (frm.doc.type === "برواز و زجاج") {
@@ -221,6 +208,7 @@ frappe.ui.form.on("calculation", {
             });
     },
     is_for_borad: function(frm) {
+      get_price_settings(frm);
         if (frm.doc.b_height === undefined || frm.doc.b_width === undefined) {
             frappe.model.set_value("calculation", frm.doc.name, "is_for_borad", 0);
             msgprint("الرجاء ادخال الطول و العرض للوحة قبل اختيار الزجاج لها");
@@ -318,7 +306,35 @@ function update_total_g_price(frm) {
     }
     frappe.model.set_value("calculation", frm.doc.name, "total_g_price", total);
     frm.refresh_field("total_g_price");
+    update_final_price(frm);
+}
 
+function update_final_price(frm) {
+  console.log("frm.doc.total_f_price = "+ frm.doc.total_f_price +" frm.doc.total_m_price = "
+  + frm.doc.total_m_price + " frm.doc.total_g_price = "+ frm.doc.total_g_price);
+  frappe.model.set_value("calculation", frm.doc.name, "price",frm.doc.total_f_price +
+   frm.doc.total_m_price + frm.doc.total_g_price);
+  frm.refresh_field("price");
+}
+
+function get_price_settings(frm) {
+  frappe.call({
+      "method": "frappe.client.get",
+      args: {
+          doctype: "Price Settings",
+          filters: {
+              "item": frm.doc.glass_type
+          },
+      },
+      callback: function(data) {
+          Price_Settings = data.message;
+          meter_price = frm.doc.g_area * Price_Settings.price_square;
+          beveled_letter = (frm.doc.g_width * 2 + frm.doc.g_height * 2) * Price_Settings.beveled_letter;
+          full_beveled = (frm.doc.g_width * 2 + frm.doc.g_height * 2) * Price_Settings.beveled;
+          full_letter = (frm.doc.g_width * 2 + frm.doc.g_height * 2) * Price_Settings.letter;
+          anti_braek = frm.doc.g_area * Price_Settings.anti_braek;
+      }
+  });
 }
 frappe.ui.form.on("Sub Frame", "frame",
     function(frm, cdt, cdn) {
@@ -373,6 +389,7 @@ frappe.ui.form.on("Sub Frame", "frame",
                         total_f_price += d.frame_price;
                     });
                     frappe.model.set_value("calculation", frm.doc.name, "total_f_price", total_f_price);
+                    frappe.model.set_value("calculation", frm.doc.name, "price", parseFloat(frm.doc.total_m_price+ frm.doc.total_f_price));
                     frm.refresh_field("total_f_price");
                 }
             });
@@ -423,7 +440,7 @@ frappe.ui.form.on("Sub Mating", {
 function calc_glass_operation(frm) {
     var price = 0;
     frm.doc.sides.forEach(function(d) {
-        // debugger;
+        debugger;
         //console.log("d", d);
         if (d.beveled && !d.letter) {
             if (d.side == "أعلى" || d.side == "أسفل") {
