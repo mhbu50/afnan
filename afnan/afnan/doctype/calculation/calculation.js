@@ -163,6 +163,16 @@ cur_frm.set_query("glass_type", function() {
   };
 });
 
+cur_frm.set_query("canvas_type", function() {
+  return {
+    "filters": {
+      "item_group": "كنفاس"
+    }
+  };
+});
+
+
+
     //to load Price_Settings data on saved calculation
     if (frm.doc.glass_type)
       get_price_settings(frm);
