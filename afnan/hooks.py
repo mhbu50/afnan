@@ -15,7 +15,9 @@ fixtures = [ {
 	"doctype": "Custom Field",
 	"filters":	{
 		"name": ["in", ["Sales Invoice-get_calculation","Sales Invoice-print_barcode",
-        "Item-print_barcode","Item-color"," Item-height","Item-width"]]
+        "Item-print_barcode","Item-color"," Item-height","Item-width","Sales Invoice Item-desc",
+        "Sales Invoice Item-width","Sales Invoice Item-height","Sales Order-print_barcode",
+        "Sales Order-print_barcode"]]
 	}
 },
 {
