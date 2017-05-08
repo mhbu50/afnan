@@ -145,7 +145,7 @@ frappe.ui.form.on("calculation", {
            "item_group": "ماتنق"
          }
        };
-}
+};
 
 cur_frm.fields_dict["sub_frame"].grid.get_field("frame").get_query = function(doc){
    return {
@@ -153,7 +153,7 @@ cur_frm.fields_dict["sub_frame"].grid.get_field("frame").get_query = function(do
        "item_group":  ["in", ["برواز بلاستك", "برواز خشب"]]
      }
    };
-}
+};
 
 cur_frm.set_query("glass_type", function() {
   return {
@@ -486,7 +486,7 @@ frappe.ui.form.on("Sub Mating", {
 function calc_glass_operation(frm) {
   var price = 0;
   frm.doc.sides.forEach(function(d) {
-    debugger;
+    // debugger;
     //console.log("d", d);
     if (d.beveled && !d.letter) {
       if (d.side == "أعلى" || d.side == "أسفل") {

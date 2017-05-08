@@ -1,7 +1,7 @@
-frappe.ui.form.on("Sales Invoice", {
+frappe.ui.form.on("Sales Order", {
     onload: function(frm) {
         if (frm.doc.__islocal) {
-            frappe.model.set_value("Sales Invoice", frm.doc.name, "customer", "عميل عابر");
+            frappe.model.set_value("Sales Order", frm.doc.name, "customer", "عميل عابر");
             frm.toggle_display("print_barcode", false);
 
         } else {
@@ -34,36 +34,37 @@ frappe.ui.form.on("Sales Invoice", {
                     "name": arg
                 },
                 callback: function(r) {
+                  debugger;
                     var row_name = "";
                     if (frm.doc.items[0].item_code === undefined) {
-                        row_name = "New Sales Invoice Item 1";
+                        row_name = "New Sales Order 1";
                     } else {
-                        row = frappe.model.add_child(frm.doc, 'Sales Invoice Item', "items");
+                        row = frappe.model.add_child(frm.doc, 'Sales Order Item', "items");
                         row_name = row.name;
                     }
                     // debugger;
                     if (r.message.total_m_price || r.message.total_f_price) {
-                        frappe.model.set_value("Sales Invoice Item", row_name, "item_code", "عمل برواز");
+                        frappe.model.set_value("Sales Order Item", row_name, "item_code", "عمل برواز");
                         setTimeout(function() {
-                            // frappe.model.set_value("Sales Invoice Item", row_name, "qty", (r.message.quantity_f));
-                            frappe.model.set_value("Sales Invoice Item", row_name, "rate", (r.message.total_m_price + r.message.total_f_price));
-                            frappe.model.set_value("Sales Invoice Item", row_name, "desc", r.message.work_desc);
+                            // frappe.model.set_value("Sales Order Item", row_name, "qty", (r.message.quantity_f));
+                            frappe.model.set_value("Sales Order Item", row_name, "rate", (r.message.total_m_price + r.message.total_f_price));
+                            frappe.model.set_value("Sales Order Item", row_name, "desc", r.message.work_desc);
                         }, 100);
                     } else if (r.message.total_g_price) {
-                        frappe.model.set_value("Sales Invoice Item", row_name, "item_code", "عمل زجاج");
+                        frappe.model.set_value("Sales Order Item", row_name, "item_code", "عمل زجاج");
                         setTimeout(function() {
-                            // frappe.model.set_value("Sales Invoice Item", row_name, "qty", r.message.quantity_g);
-                            frappe.model.set_value("Sales Invoice Item", row_name, "rate", r.message.total_g_price);
-                            frappe.model.set_value("Sales Invoice Item", row_name, "height", r.message.g_height);
-                            frappe.model.set_value("Sales Invoice Item", row_name, "width", r.message.g_width);
-                            frappe.model.set_value("Sales Invoice Item", row_name, "desc", r.message.work_desc);
+                            // frappe.model.set_value("Sales Order Item", row_name, "qty", r.message.quantity_g);
+                            frappe.model.set_value("Sales Order Item", row_name, "rate", r.message.total_g_price);
+                            frappe.model.set_value("Sales Order Item", row_name, "height", r.message.g_height);
+                            frappe.model.set_value("Sales Order Item", row_name, "width", r.message.g_width);
+                            frappe.model.set_value("Sales Order Item", row_name, "desc", r.message.work_desc);
                         }, 100);
                     } else if (r.message.type == "كانفاس") {
-                        frappe.model.set_value("Sales Invoice Item", row_name, "item_code", "عمل كانفاس");
+                        frappe.model.set_value("Sales Order Item", row_name, "item_code", "عمل كانفاس");
                         setTimeout(function() {
-                            // frappe.model.set_value("Sales Invoice Item", row_name, "qty", (r.message.quantity_c));
-                            frappe.model.set_value("Sales Invoice Item", row_name, "rate", r.message.price);
-                            frappe.model.set_value("Sales Invoice Item", row_name, "desc",r.message.work_desc);
+                            // frappe.model.set_value("Sales Order Item", row_name, "qty", (r.message.quantity_c));
+                            frappe.model.set_value("Sales Order Item", row_name, "rate", r.message.price);
+                            frappe.model.set_value("Sales Order Item", row_name, "desc",r.message.work_desc);
                         }, 100);
                     }
                     dialog.hide();
