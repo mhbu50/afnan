@@ -3,6 +3,7 @@
         "public/js/barcode.html",
         "public/js/Sales Invoice.js",
         "public/js/Sales Order.js",
+        "public/js/Production Order.js",
         "public/js/Item.js"
     ]
 }

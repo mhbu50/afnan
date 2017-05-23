@@ -1,13 +1,16 @@
+// Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
+// License: GNU General Public License v3. See license.txt
+frappe.provide("erpnext.selling");
+
+
 frappe.ui.form.on("Sales Order", {
     onload: function(frm) {
         if (frm.doc.__islocal) {
             frappe.model.set_value("Sales Order", frm.doc.name, "customer", "عميل عابر");
             frm.toggle_display("print_barcode", false);
-
         } else {
             frm.toggle_display("print_barcode", true);
         }
-
     },
     get_calculation: function(frm) {
         var dialog = new frappe.ui.Dialog({
@@ -26,7 +29,9 @@ frappe.ui.form.on("Sales Order", {
         });
         dialog.fields_dict.update.$input.click(function() {
             arg = dialog.fields_list[0].input.value;
+            console.log("arg",arg);
             if (!arg) return;
+          //  frm.set_value("calculation",arg);
             return frappe.call({
                 method: "frappe.client.get",
                 args: {
@@ -34,22 +39,24 @@ frappe.ui.form.on("Sales Order", {
                     "name": arg
                 },
                 callback: function(r) {
-                  debugger;
+                  // debugger;
+                  console.log("frm",frm);
                     var row_name = "";
                     if (frm.doc.items[0].item_code === undefined) {
-                        row_name = "New Sales Order 1";
+                        row_name = "New Sales Order Item 1";
                     } else {
                         row = frappe.model.add_child(frm.doc, 'Sales Order Item', "items");
                         row_name = row.name;
                     }
                     // debugger;
+                    frappe.model.set_value("Sales Order Item", row_name, "calculation", arg);
                     if (r.message.total_m_price || r.message.total_f_price) {
                         frappe.model.set_value("Sales Order Item", row_name, "item_code", "عمل برواز");
                         setTimeout(function() {
-                            // frappe.model.set_value("Sales Order Item", row_name, "qty", (r.message.quantity_f));
+                            frappe.model.set_value("Sales Order Item", row_name, "qty", (r.message.quantity_f));
                             frappe.model.set_value("Sales Order Item", row_name, "rate", (r.message.total_m_price + r.message.total_f_price));
                             frappe.model.set_value("Sales Order Item", row_name, "desc", r.message.work_desc);
-                        }, 100);
+                        }, 150);
                     } else if (r.message.total_g_price) {
                         frappe.model.set_value("Sales Order Item", row_name, "item_code", "عمل زجاج");
                         setTimeout(function() {
@@ -138,5 +145,86 @@ frappe.ui.form.on("Sales Order", {
         });
         dialog.$wrapper.find('.modal-dialog').css("width", "870px");
         dialog.show();
+    },
+    make_production: function(frm) {
+
+
+    frappe.call({
+
+      method: 'afnan.afnan.tools.get_production_order_items',
+      args: {
+        it:frm.doc.items,
+      so:frm.doc.name},
+      callback: function(r) {
+        console.log(r);
+        if(!r.message.every(function(d) { return !!d.bom })) {
+          frappe.msgprint({
+            title: __('Production Order not created'),
+            message: __('No Items with Bill of Materials to Manufacture'),
+            indicator: 'orange'
+          });
+          return;
+        }
+        else if(!r.message.every(function(d) { return !!d.pending_qty })) {
+          frappe.msgprint({
+            title: __('Production Order not created'),
+            message: __('Production Order already created for all items with BOM'),
+            indicator: 'orange'
+          });
+          return;
+        } else {
+          var fields = [
+            {fieldtype:'Table', fieldname: 'items',
+              description: __('Select BOM and Qty for Production'),
+              fields: [
+                {fieldtype:'Read Only', fieldname:'item_code',
+                  label: __('Item Code'), in_list_view:1},
+                {fieldtype:'Link', fieldname:'bom', options: 'BOM', reqd: 1,
+                  label: __('Select BOM'), in_list_view:1, get_query: function(doc) {
+                    return {filters: {item: doc.item_code}};
+                  }},
+                {fieldtype:'Float', fieldname:'pending_qty', reqd: 1,
+                  label: __('Qty'), in_list_view:1},
+              ],
+              get_data: function() {
+                console.log("r.message",r.message);
+                return r.message
+              }
+            }
+          ]
+          var d = new frappe.ui.Dialog({
+            title: __('Select Items to Manufacture'),
+            fields: fields,
+            primary_action: function() {
+              data = d.get_values();
+              frm.call({
+                method: 'make_production_orders',
+                args: {
+                  items: data,
+                  company: frm.doc.company,
+                  sales_order: frm.docname,
+                  project: frm.project
+                },
+                freeze: true,
+                callback: function(r) {
+                  if(r.message) {
+                    frappe.msgprint({
+                      message: __('Production Orders Created: {0}',
+                        [r.message.map(function(d) {
+                          return repl('<a href="#Form/Production Order/%(name)s">%(name)s</a>', {name:d})
+                        }).join(', ')]),
+                      indicator: 'green'
+                    })
+                  }
+                  d.hide();
+                }
+              });
+            },
+            primary_action_label: __('Make')
+          });
+          d.show();
+        }
+      }
+    });
     }
 });

@@ -4,6 +4,8 @@
 from __future__ import division
 from __future__ import unicode_literals
 import frappe
+from erpnext import get_default_currency
+from erpnext import get_default_company
 from frappe.model.mapper import get_mapped_doc
 from frappe.model.document import Document
 
@@ -23,6 +25,42 @@ class calculation(Document):
 			canvas_price =((self.c_height + 10)/100 * (self.c_width + 10)/100) * 65
 			wood_price  = (self.c_height /100 + self.c_width /100) * wood
 			self.price = canvas_price + wood_price + 1
+            # ############################################
+
+
+	def on_update(self):
+		pass
+	def before_insert(self):
+		doc = frappe.get_doc({
+            "doctype": "BOM",
+            "quantity": 1,
+            "is_active":1,
+            "is_default":0,
+            "item": "عمل كانفاس",
+            "rm_cost_as_per":"Price List",
+            "Price List":"Standard Buying",
+            "currency": get_default_currency(),
+            "conversion_rate": 1,
+            "company": get_default_company()
+        })
+
+		items = frappe.get_doc({
+        "doctype": "BOM Item",
+        "item_code": "mating 1",
+        "qty": 10,
+        "rate":55,
+        "stock_uom":"Box"
+        })
+		doc.append("items", items)
+		doc.save()
+		doc.submit()
+		self.bom = doc.name
+
+
+
+
+
+
 @frappe.whitelist()
 def make_invoice(source_name, target_doc=None):
 
