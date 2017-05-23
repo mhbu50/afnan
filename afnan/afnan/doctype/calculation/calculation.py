@@ -46,7 +46,7 @@ class calculation(Document):
 
 		items = frappe.get_doc({
         "doctype": "BOM Item",
-        "item_code": "mating 1",
+        "item_code": "F150-1 GOLD",
         "qty": 10,
         "rate":55,
         "stock_uom":"Box"
