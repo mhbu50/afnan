@@ -157,7 +157,7 @@ frappe.ui.form.on("Sales Order", {
       so:frm.doc.name},
       callback: function(r) {
         console.log(r);
-        if(!r.message.every(function(d) { return !!d.bom })) {
+        if(!r.message.every(function(d) { return !!d.bom; })) {
           frappe.msgprint({
             title: __('Production Order not created'),
             message: __('No Items with Bill of Materials to Manufacture'),
@@ -165,7 +165,7 @@ frappe.ui.form.on("Sales Order", {
           });
           return;
         }
-        else if(!r.message.every(function(d) { return !!d.pending_qty })) {
+        else if(!r.message.every(function(d) { return !!d.pending_qty; })) {
           frappe.msgprint({
             title: __('Production Order not created'),
             message: __('Production Order already created for all items with BOM'),
@@ -188,10 +188,10 @@ frappe.ui.form.on("Sales Order", {
               ],
               get_data: function() {
                 console.log("r.message",r.message);
-                return r.message
+                return r.message;
               }
             }
-          ]
+          ];
           var d = new frappe.ui.Dialog({
             title: __('Select Items to Manufacture'),
             fields: fields,
@@ -211,10 +211,10 @@ frappe.ui.form.on("Sales Order", {
                     frappe.msgprint({
                       message: __('Production Orders Created: {0}',
                         [r.message.map(function(d) {
-                          return repl('<a href="#Form/Production Order/%(name)s">%(name)s</a>', {name:d})
+                          return repl('<a href="#Form/Production Order/%(name)s">%(name)s</a>', {name:d});
                         }).join(', ')]),
                       indicator: 'green'
-                    })
+                    });
                   }
                   d.hide();
                 }
