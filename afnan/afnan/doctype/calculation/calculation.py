@@ -13,9 +13,7 @@ class calculation(Document):
 
 	def validate(self):
 		self.price = 0
-		if self.type == "برواز و زجاج":
-			pass
-		else:
+		if self.type == "كانفاس":
 			if self.wood =="4x2":
 				wood = 2 * 15
 			elif self.wood == "2x4":
@@ -36,24 +34,60 @@ class calculation(Document):
             "quantity": 1,
             "is_active":1,
             "is_default":0,
-            "item": "عمل كانفاس",
+            "item": "عمل "+self.type,
             "rm_cost_as_per":"Price List",
             "Price List":"Standard Buying",
             "currency": get_default_currency(),
             "conversion_rate": 1,
             "company": get_default_company()
         })
+		in_w = self.in_w
+		in_h = self.in_h
+        #get first mating
+		if(self.mating):
+			mating_item1 = frappe.get_doc({
+            "doctype": "BOM Item",
+            "item_code": self.mating,
+            "qty": self.in_h / 100 * self.in_w / 100,
+            "rate":self.mating_price,
+            "stock_uom":"Meter"
+            })
+    		doc.append("items", mating_item1)
+            #get sub mating
+		for m in self.sub_mating:
+			mating_items = frappe.get_doc({
+            "doctype": "BOM Item",
+            "item_code": m.mating,
+            "qty": self.in_h / 100 * self.in_w / 100,
+            "rate":m.mating_price,
+            "stock_uom":"Meter"
+            })
+			doc.append("items", mating_items)
+            #get sub frame
 
-		items = frappe.get_doc({
-        "doctype": "BOM Item",
-        "item_code": "F150-1 GOLD",
-        "qty": 10,
-        "rate":55,
-        "stock_uom":"Box"
-        })
-		doc.append("items", items)
+		for f in self.sub_frame:
+			frame_item = frappe.get_doc({
+            "doctype": "BOM Item",
+            "item_code": f.frame,
+            "qty": f.f_used,
+            "rate":f.frame_price,
+            "stock_uom":"Meter"
+            })
+			doc.append("items", frame_item)
+         #get glass
+		if(self.glass_type):
+			glass_item = frappe.get_doc({
+            "doctype": "BOM Item",
+            "item_code": self.glass_type,
+            "qty": in_h / 100 * in_w / 100,
+            "rate":self.total_g_price,
+            "stock_uom":"Meter"
+            })
+    		doc.append("items", glass_item)
+
+
 		doc.save()
-		doc.submit()
+		# doc.submit()
 		self.bom = doc.name
 
 

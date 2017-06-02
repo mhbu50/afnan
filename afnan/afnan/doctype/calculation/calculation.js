@@ -86,6 +86,10 @@ function check_h_w(frm) {
   }
 }
 
+function calc_outers(array,idx) {
+  return 5;
+}
+
 frappe.ui.form.on("calculation", {
   onload_post_render: function() {
     var section_head = $('.section-head').find("a").filter(
@@ -107,7 +111,7 @@ frappe.ui.form.on("calculation", {
     // });
   },
   onload: function(frm) {
-    if (frm.doc.type === "برواز و زجاج") {
+    if (frm.doc.type === "برواز") {
       frm.toggle_reqd("b_width", true);
       frm.toggle_reqd("b_height", true);
       frm.toggle_reqd("c_width", false);
@@ -178,7 +182,7 @@ cur_frm.set_query("canvas_type", function() {
       get_price_settings(frm);
   },
   type: function(frm) {
-    if (frm.doc.type === "برواز و زجاج") {
+    if (frm.doc.type === "برواز") {
       frm.toggle_reqd("b_width", true);
       frm.toggle_reqd("b_height", true);
       frm.toggle_reqd("g_width", true);
@@ -382,8 +386,9 @@ if(frm.doc.glass_type !== undefined){
   });}
 }
 
-frappe.ui.form.on("Sub Frame", "frame",
-  function(frm, cdt, cdn) {
+frappe.ui.form.on("Sub Frame", {
+  frame:function(frm, cdt, cdn) {
+
     var row = locals[cdt][cdn];
     if (row.frame) {
       frappe.call({
@@ -410,15 +415,21 @@ frappe.ui.form.on("Sub Frame", "frame",
         callback: function(data) {
           frappe.model.set_value("Sub Frame", row.name, "frame_width", data.message.width);
           frm.refresh_field("frame_width");
-          console.log("frm.doc.in_h = " + frm.doc.in_h + " data.message.width  = " + data.message.width);
+          // console.log("frm.doc.in_h = " + frm.doc.in_h + " data.message.width  = " + data.message.width);
           var len = frm.doc.sub_frame.length;
-          console.log("len", len);
+          //console.log("len", len);
+          var out_height=0;
+          var out_width=0;
+          var frame_width = 0;
+debugger;
+
           if (1 < len) {
+            console.log("idx =",row.idx);
+            calc_outers(frm.doc.sub_frame,row.idx);
             frappe.model.set_value("Sub Frame", row.name, "out_height", frm.doc.sub_frame[len - 2].out_height + data.message.width * 2);
             frm.refresh_field("out_height");
             frappe.model.set_value("Sub Frame", row.name, "out_width", frm.doc.sub_frame[len - 2].out_width + data.message.width * 2);
             frm.refresh_field("out_width");
-            console.log("frm.doc.sub_frame[len-1]", frm.doc.sub_frame[len - 2]);
           } else {
             frappe.model.set_value("Sub Frame", row.name, "out_height", frm.doc.in_h + data.message.width * 2);
             frm.refresh_field("out_height");
@@ -430,6 +441,7 @@ frappe.ui.form.on("Sub Frame", "frame",
           frappe.model.set_value("Sub Frame", row.name, "frame_price", row.f_used * row.sub_f_price);
           frm.refresh_field("frame_price");
 
+
           var total_f_price = 0;
           frm.doc.sub_frame.forEach(function(d) {
             total_f_price += d.frame_price;
@@ -439,7 +451,33 @@ frappe.ui.form.on("Sub Frame", "frame",
           frm.refresh_field("total_f_price");
         }
       });
+
+      //to refresh exist row
+      setTimeout(function(){
+        $.each( frm.doc.sub_frame, function( key, value ) {
+            console.log("row "+ parseInt(key+1) + ": " , value );
+              frame_width = 0;
+              $.each(frm.doc.sub_frame.slice(0,parseInt(key+1)), function( key2, value2 ) {
+                frame_width = parseInt(frame_width)+parseInt(value2.frame_width);
+              });
+              console.log("frame_width = "+frame_width);
+
+            frappe.model.set_value("Sub Frame", value.name, "out_height", frm.doc.in_h + (frame_width * 2));
+            frm.refresh_field("out_height");
+            frappe.model.set_value("Sub Frame", value.name, "out_width", frm.doc.in_w + (frame_width * 2));
+            frm.refresh_field("out_width");
+
+            });
+      }, 150);
+
+
     }
+  },  sub_frame_add:function(frm) {
+    if(frm.doc.b_height === 0.0 || frm.doc.b_width === 0.0){
+      frm.doc.sub_frame=[];
+      return msgprint("الرجاء ادخال الطول و العرض");
+    }
+  }
   });
 
 frappe.ui.form.on("Sub Mating", {
