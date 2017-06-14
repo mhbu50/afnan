@@ -102,13 +102,15 @@ frappe.ui.form.on("calculation", {
     });
   },
   refresh: function(frm) {
-
-    // frm.add_custom_button(__('Invoice'), function() {
-    //     frappe.model.open_mapped_doc({
-    //         method: "afnan.afnan.doctype.calculation.calculation.make_invoice",
-    //         frm: cur_frm
-    //     })
-    // });
+    console.log("frm.doc.__islocal",frm.doc.__islocal);
+  if(!frm.doc.__islocal ) {
+    frm.add_custom_button(__('Invoice'), function() {
+        frappe.model.open_mapped_doc({
+            method: "afnan.afnan.doctype.calculation.calculation.make_invoice",
+            frm: cur_frm
+        })
+    });
+  }
   },
   onload: function(frm) {
     if (frm.doc.type === "برواز") {
@@ -248,9 +250,11 @@ cur_frm.set_query("canvas_type", function() {
           },
         },
         callback: function(data) {
+          if(data.message) {
           frappe.model.set_value("calculation", frm.doc.name, "mating_price", data.message.price_list_rate);
           frm.refresh_field("mating_price");
         }
+      }
       });
   },
   is_for_borad: function(frm) {
@@ -323,6 +327,7 @@ function do_glass_type(frm) {
         name: frm.doc.glass_type,
       },
       callback: function(data) {
+        if(data.message) {
         Price_Settings = data.message;
         meter_price = frm.doc.g_area * Price_Settings.price_square;
         beveled_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Price_Settings.beveled_letter;
@@ -330,6 +335,7 @@ function do_glass_type(frm) {
         full_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Price_Settings.letter;
         anti_braek = frm.doc.g_area * Price_Settings.anti_braek;
         update_total_g_price(frm);
+      }
       }
     });
 }
@@ -375,6 +381,7 @@ if(frm.doc.glass_type !== undefined){
       name: frm.doc.glass_type,
     },
     callback: function(data) {
+      if(data.message) {
       Price_Settings = data.message;
       console.log("frm.doc.g_area = "+ frm.doc.g_area + " Price_Settings.price_square = "+ Price_Settings.price_square);
       meter_price = frm.doc.g_area * Price_Settings.price_square;
@@ -383,7 +390,9 @@ if(frm.doc.glass_type !== undefined){
       full_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Price_Settings.letter;
       anti_braek = frm.doc.g_area * Price_Settings.anti_braek;
     }
-  });}
+  }
+  });
+}
 }
 
 frappe.ui.form.on("Sub Frame", {
@@ -401,9 +410,11 @@ frappe.ui.form.on("Sub Frame", {
           },
         },
         callback: function(data) {
+          if(data.message) {
           frappe.model.set_value("Sub Frame", row.name, "sub_f_price", data.message.price_list_rate);
           frm.refresh_field("sub_f_price");
         }
+      }
       });
 
       frappe.call({
@@ -413,6 +424,7 @@ frappe.ui.form.on("Sub Frame", {
           name: row.frame,
         },
         callback: function(data) {
+          if(data.message) {
           frappe.model.set_value("Sub Frame", row.name, "frame_width", data.message.width);
           frm.refresh_field("frame_width");
           // console.log("frm.doc.in_h = " + frm.doc.in_h + " data.message.width  = " + data.message.width);
@@ -450,6 +462,7 @@ debugger;
           frappe.model.set_value("calculation", frm.doc.name, "price", parseFloat(frm.doc.total_m_price + frm.doc.total_f_price));
           frm.refresh_field("total_f_price");
         }
+      }
       });
 
       //to refresh exist row
@@ -494,9 +507,11 @@ frappe.ui.form.on("Sub Mating", {
           },
         },
         callback: function(data) {
+          if(data.message) {
           frappe.model.set_value("Sub Mating", row.name, "sub_m_price", data.message.price_list_rate);
           frm.refresh_field("sub_m_price");
         }
+      }
       });
     }
   },

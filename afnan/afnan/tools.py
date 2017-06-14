@@ -24,6 +24,22 @@ def make_production_orders(source_name, target_doc=None):
     return target_doc
 
 @frappe.whitelist()
+def make_sales_order(source_name, target_doc=None):
+    def set_missing_values(source, target):
+        target.production_item = "ffff"
+
+    target_doc = get_mapped_doc("Sales Order", source_name, {
+        "Sales Order": {
+            "doctype": "Production Order",
+            "field_map": {
+                "total": "qty"
+            }
+        }
+    }, target_doc, set_missing_values)
+
+    return target_doc
+
+@frappe.whitelist()
 def make_calculate_conversion(source_name, target_doc=None):
     # calculate conversion factor
 	if item.stock_uom == args.uom:
@@ -37,20 +53,18 @@ def make_calculate_conversion(source_name, target_doc=None):
 
 @frappe.whitelist()
 def get_production_order_items(it=None,so=None):
-    '''Returns items with BOM that already do not have a linked production order'''
-    # so =333
-    it = json.loads(it)
-    # print it
-    items = []
-    for i in it:
-        items.append(dict(
+	'''Returns items with BOM that already do not have a linked production order'''
+	it = json.loads(it)
+	items = []
+	for i in it:
+		items.append(dict(
             item_code= i['item_code'],
-            bom = frappe.db.get_value("calculation", i['calculation'], "bom" ),
+            bom = frappe.db.get_value("calculation", i['calculation_item'], "bom" ),
             warehouse = i['warehouse'],
             pending_qty= i['stock_qty'] - flt(frappe.db.sql('''select sum(qty) from `tabProduction Order`
                 where production_item=%s and sales_order=%s''', (i['item_code'], so))[0][0])
         ))
-    return items
+	return items
 
 
 @frappe.whitelist()

@@ -23,8 +23,6 @@ class calculation(Document):
 			canvas_price =((self.c_height + 10)/100 * (self.c_width + 10)/100) * 65
 			wood_price  = (self.c_height /100 + self.c_width /100) * wood
 			self.price = canvas_price + wood_price + 1
-            # ############################################
-
 
 	def on_update(self):
 		pass
@@ -52,7 +50,7 @@ class calculation(Document):
             "rate":self.mating_price,
             "stock_uom":"Meter"
             })
-    		doc.append("items", mating_item1)
+			doc.append("items", mating_item1)
             #get sub mating
 		for m in self.sub_mating:
 			mating_items = frappe.get_doc({
@@ -83,17 +81,10 @@ class calculation(Document):
             "rate":self.total_g_price,
             "stock_uom":"Meter"
             })
-    		doc.append("items", glass_item)
-
-
+			doc.append("items", glass_item)
 		doc.save()
 		# doc.submit()
 		self.bom = doc.name
-
-
-
-
-
 
 @frappe.whitelist()
 def make_invoice(source_name, target_doc=None):
@@ -103,5 +94,4 @@ def make_invoice(source_name, target_doc=None):
     si = frappe.get_doc("Sales Invoice Item","New Sales Invoice Item 1")
     # si.item_code = calculation.type
     # si.rate = calculation.total_g_price
-
     return si
