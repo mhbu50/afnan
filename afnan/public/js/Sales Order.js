@@ -49,11 +49,11 @@ frappe.ui.form.on("Sales Order", {
                         row_name = row.name;
                     }
                     // debugger;
-                    frappe.model.set_value("Sales Order Item", row_name, "calculation", arg);
+                    frappe.model.set_value("Sales Order Item", row_name, "calculation_item", arg);
                     if (r.message.total_m_price || r.message.total_f_price) {
                         frappe.model.set_value("Sales Order Item", row_name, "item_code", "عمل برواز");
                         setTimeout(function() {
-                            frappe.model.set_value("Sales Order Item", row_name, "qty", (r.message.quantity_f));
+                            // frappe.model.set_value("Sales Order Item", row_name, "qty", (r.message.quantity_f));
                             frappe.model.set_value("Sales Order Item", row_name, "rate", (r.message.total_m_price + r.message.total_f_price));
                             frappe.model.set_value("Sales Order Item", row_name, "desc", r.message.work_desc);
                         }, 150);

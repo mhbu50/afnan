@@ -6,7 +6,6 @@ from frappe.model.mapper import get_mapped_doc
 from frappe.model.document import Document
 from frappe.utils import cstr, flt, getdate, comma_and, cint
 
-
 @frappe.whitelist()
 def make_production_orders(source_name, target_doc=None):
     def set_missing_values(source, target):
@@ -22,7 +21,7 @@ def make_production_orders(source_name, target_doc=None):
     }, target_doc, set_missing_values)
 
     return target_doc
-
+# dead code
 @frappe.whitelist()
 def make_sales_order(source_name, target_doc=None):
     def set_missing_values(source, target):
@@ -65,8 +64,3 @@ def get_production_order_items(it=None,so=None):
                 where production_item=%s and sales_order=%s''', (i['item_code'], so))[0][0])
         ))
 	return items
-
-
-@frappe.whitelist()
-def get_pro():
-    return 555
