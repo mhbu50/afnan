@@ -365,10 +365,10 @@ function update_total_g_price(frm) {
 }
 
 function update_final_price(frm) {
-  // console.log("frm.doc.total_f_price = " + frm.doc.total_f_price + " frm.doc.total_m_price = " +
-  //   frm.doc.total_m_price + " frm.doc.total_g_price = " + frm.doc.total_g_price);
-  frappe.model.set_value("calculation", frm.doc.name, "price", frm.doc.total_f_price +
-    frm.doc.total_m_price + frm.doc.total_g_price);
+  console.log("frm.doc.total_f_price = " + frm.doc.total_f_price + " frm.doc.total_m_price = " +
+    frm.doc.total_m_price + " frm.doc.total_g_price = " + frm.doc.total_g_price);
+  frappe.model.set_value("calculation", frm.doc.name, "price", parseFloat(frm.doc.total_f_price) +
+    parseFloat(frm.doc.total_m_price) + parseFloat(frm.doc.total_g_price));
   frm.refresh_field("price");
 }
 
