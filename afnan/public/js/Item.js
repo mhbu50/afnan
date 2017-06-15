@@ -1,7 +1,9 @@
 frappe.ui.form.on("Item", "print_barcode",
     function(frm) {
-        console.log("frm.doc.barcode",frm.doc.barcode)
-        if(frm.doc.barcode == undefined || (frm.doc.barcode).trim.length <1){
+        console.log("frm.doc.barcode",frm.doc.barcode);
+        console.log("(frm.doc.barcode).trim().length <1: ",frm.doc.barcode.trim().length <1);
+        // console.log("cond: ",(frm.doc.barcode === undefined || (frm.doc.barcode).trim.length <1));
+        if(frm.doc.barcode === undefined || (frm.doc.barcode).trim().length <1){
             // alert("barcode is empty");
             var msg = frappe._("Please attach atleast 1 file");
             msgprint(msg);
