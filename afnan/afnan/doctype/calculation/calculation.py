@@ -47,6 +47,7 @@ class calculation(Document):
             "doctype": "BOM Item",
             "item_code": self.mating,
             "qty": self.in_h / 100 * self.in_w / 100,
+            "stock_qty": self.in_h / 100 * self.in_w / 100,
             "rate":self.mating_price,
             "stock_uom":"Meter"
             })
@@ -57,6 +58,7 @@ class calculation(Document):
             "doctype": "BOM Item",
             "item_code": m.mating,
             "qty": self.in_h / 100 * self.in_w / 100,
+            "stock_qty": self.in_h / 100 * self.in_w / 100,
             "rate":m.mating_price,
             "stock_uom":"Meter"
             })
@@ -68,6 +70,7 @@ class calculation(Document):
             "doctype": "BOM Item",
             "item_code": f.frame,
             "qty": f.f_used,
+            "stock_qty":f.f_used,
             "rate":f.frame_price,
             "stock_uom":"Meter"
             })
@@ -78,6 +81,7 @@ class calculation(Document):
             "doctype": "BOM Item",
             "item_code": self.glass_type,
             "qty": in_h / 100 * in_w / 100,
+            "stock_qty": in_h / 100 * in_w / 100,
             "rate":self.total_g_price,
             "stock_uom":"Meter"
             })
