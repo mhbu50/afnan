@@ -86,10 +86,6 @@ function check_h_w(frm) {
   }
 }
 
-function calc_outers(array,idx) {
-  return 5;
-}
-
 frappe.ui.form.on("calculation", {
   onload_post_render: function() {
     var section_head = $('.section-head').find("a").filter(
@@ -102,17 +98,96 @@ frappe.ui.form.on("calculation", {
     });
   },
   refresh: function(frm) {
-    console.log("frm.doc.__islocal",frm.doc.__islocal);
   if(!frm.doc.__islocal ) {
-    frm.add_custom_button(__('Invoice'), function() {
-        frappe.model.open_mapped_doc({
-            method: "afnan.afnan.doctype.calculation.calculation.make_invoice",
-            frm: cur_frm
-        })
-    });
-  }
+          frm.add_custom_button(__('Invoice'), function() {
+            if(frm.is_dirty()){
+              msgprint("الرجاء حفظ الملف قبل انشاء الفاتورة");
+            }else{
+              // frappe.model.open_mapped_doc({
+              //     method: "afnan.afnan.doctype.calculation.calculation.make_invoice",
+              //     frm: cur_frm
+              // });
+              var sc_table = frm.doc.sub_calculation;
+              var discount = frm.doc.discount;
+              frappe.model.with_doctype('Sales Order', function() {
+              var doc = frappe.model.get_new_doc('Sales Order');
+              console.log("doc",doc);
+              doc.customer = "عميل عابر";
+              doc.delivery_date  = frappe.datetime.add_days(frappe.datetime.nowdate(), 5);
+              doc.additional_discount_percentage = parseFloat(discount);
+              console.log("frm.doc = ", doc);
+              $.each(sc_table, function(i, d) {
+                              // console.log("d = ",d);
+                   				    row = frappe.model.add_child(doc,"items");
+                      			  row.calculation_item = d.calculation_link;
+                              row.description = d .work_desc;
+                              row.rate = d.price;
+                              row.amount = d.price;
+                              row.qty = d.quantity;
+                              row.item_code = d.type;
+                              row.item_name = d.type;
+                              row.uom = "Nos";
+                      			});
+                frappe.set_route('Form', doc.doctype, doc.name);
+                });
+
+
+        //       frappe.run_serially([
+        //   () => frappe.new_doc('Sales Order',true),
+        //   () => console.log("sc = ",sc_table),
+        //   () => console.log("frm.doc.name = ",frm),
+        //   () => frappe.model.set_value("Sales Order", frm.doc.name, "customer", "عميل عابر"),
+        //   () => frappe.model.set_value("Sales Order", frm.doc.name,"delivery_date",frappe.datetime.add_days(frappe.datetime.nowdate(), 5)),
+        //   // () => frm.set_value("additional_discount_percentage",discount),
+        //   () => $.each(sc_table, function(i, d) {
+        //                 console.log("d = ",d);
+        //                 console.log("0");
+        //      				    row = frappe.model.add_child(frm.doc, 'Sales Order Item', "items");
+        //                 console.log("1");
+        //         			  row.calculation_item = d.calculation_link;
+        //                 console.log("2");
+        //                 row.description = d .work_desc;
+        //                 console.log("3");
+        //                 row.rate = d.price;
+        //                 console.log("4");
+        //                 row.amount = d.price;
+        //                 console.log("5");
+        //         			}),
+        //   () => frm.refresh_field("items"),
+        //   () => frm.refresh_fields()
+        //   // () => frm.save()
+        // ]);
+            }
+          });
+
+          frm.add_custom_button(__('Add Extra'), function() {
+            var sc_table = frm.doc.sub_calculation;
+            frappe.run_serially([
+        () => frappe.new_doc('calculation'),
+        () => console.log("sc = ",sc_table),
+        () => $.each(sc_table, function(i, d) {
+          // console.log("d = ",d);
+           				    row = frm.add_child("sub_calculation")
+              			  row.calculation_link = d.calculation_link;
+                      row.work_desc = d .work_desc,
+                      row.price = d.price;
+                      row.bom = d.bom;
+                      row.quantity = d.quantity;
+                      row.total = d.total;
+                      row.type = d.type;
+
+              			}),
+        () => frm.refresh_field("sub_calculation")]);
+          });
+        }
+        var tot = 0;
+        $.each(frm.doc.sub_calculation,function(index,row){
+          tot = tot + parseInt(row.total);
+        });
+        frm.set_value("tot",tot);
   },
   onload: function(frm) {
+      console.log("frappe.get_route()",frappe.get_route());
     if (frm.doc.type === "برواز") {
       frm.toggle_reqd("b_width", true);
       frm.toggle_reqd("b_height", true);
@@ -140,7 +215,7 @@ frappe.ui.form.on("calculation", {
     cur_frm.set_query("mating", function() {
       return {
         "filters": {
-          "item_group": "ماتنق"
+          "item_group":["in", ("ماتنق", "جلد و قماش")]
         }
       };
     });
@@ -148,7 +223,7 @@ frappe.ui.form.on("calculation", {
     cur_frm.fields_dict["sub_mating"].grid.get_field("mating").get_query = function(doc){
        return {
          "filters": {
-           "item_group": "ماتنق"
+           "item_group": ["in", ["ماتنق", "جلد و قماش"]]
          }
        };
 };
@@ -176,9 +251,6 @@ cur_frm.set_query("canvas_type", function() {
     }
   };
 });
-
-
-
     //to load Price_Settings data on saved calculation
     if (frm.doc.glass_type)
       get_price_settings(frm);
@@ -314,8 +386,12 @@ cur_frm.set_query("canvas_type", function() {
     canvas_price = ((frm.doc.c_height + 10) / 100 * (frm.doc.c_width + 10) / 100) * 65;
     wood_price = (frm.doc.c_height / 100 + frm.doc.c_width / 100) * wood;
     frappe.model.set_value("calculation", frm.doc.name, "price", canvas_price + wood_price);
+  },
+  discount:function (frm) {
+    console.log("frm.doc.tot = ",frm.doc.tot +" (frm.doc.discount /100) = "+ (frm.doc.tot*frm.doc.discount /100));
+    console.log("frm.doc.tot - (frm.doc.discount /100)",frm.doc.tot - (frm.doc.discount /100));
+    frm.set_value("dis_tot",parseInt( frm.doc.tot - (frm.doc.tot * frm.doc.discount / 100)));
   }
-
 });
 
 function do_glass_type(frm) {
@@ -433,7 +509,7 @@ frappe.ui.form.on("Sub Frame", {
           var out_height=0;
           var out_width=0;
           var frame_width = 0;
-debugger;
+// debugger;
 
           if (1 < len) {
             console.log("idx =",row.idx);
@@ -474,7 +550,6 @@ debugger;
                 frame_width = parseInt(frame_width)+parseInt(value2.frame_width);
               });
               console.log("frame_width = "+frame_width);
-
             frappe.model.set_value("Sub Frame", value.name, "out_height", frm.doc.in_h + (frame_width * 2));
             frm.refresh_field("out_height");
             frappe.model.set_value("Sub Frame", value.name, "out_width", frm.doc.in_w + (frame_width * 2));
@@ -508,8 +583,8 @@ frappe.ui.form.on("Sub Mating", {
         },
         callback: function(data) {
           if(data.message) {
-          frappe.model.set_value("Sub Mating", row.name, "sub_m_price", data.message.price_list_rate);
-          frm.refresh_field("sub_m_price");
+            frappe.model.set_value("Sub Mating", row.name, "sub_m_price", data.message.price_list_rate);
+            frm.refresh_field("sub_m_price");
         }
       }
       });
@@ -578,6 +653,20 @@ frappe.ui.form.on("Sides", {
   },
   security: function(frm) {
     update_total_g_price(frm);
+  }
+
+});
+
+frappe.ui.form.on("Sub Calculation", {
+  quantity: function(frm, cdt, cdn) {
+  var row = locals[cdt][cdn];
+  frappe.model.set_value("Sub Calculation", row.name,"total",row.quantity * row.price);
+  frm.refresh_field("sub_m_price");
+  var tot = 0;
+  $.each(frm.doc.sub_calculation,function(index,row){
+    tot = tot + parseInt(row.total);
+  });
+  frm.set_value("tot",tot);
   }
 
 });
