@@ -40,6 +40,22 @@ class calculation(Document):
         self.append("sub_calculation", doc)
         self.save()
 
+    def on_update(self):
+        sub_calc_list = frappe.get_list(
+            "Sub Calculation",
+            filters={"calculation_link": self.name},
+            fields=["*"])
+        for sub_calc in sub_calc_list:
+            print "1 sub_calc.name = {}".format(sub_calc.name)
+            sub_calc = frappe.get_doc("Sub Calculation", sub_calc.name)
+            print "2 sub_calc.name = {}".format(sub_calc.name)
+            print "self = {}".format(self.price)
+            print "sub_calc.price = {}".format(sub_calc.price)
+            sub_calc.price = self.price
+            sub_calc.total = self.price * sub_calc.quantity
+            sub_calc.work_desc = self.work_desc
+            sub_calc.save()
+
     def before_insert(self):
         doc = frappe.get_doc({
             "doctype": "BOM",
