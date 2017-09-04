@@ -385,7 +385,7 @@ function do_glass_type(frm) {
     frappe.call({
       "method": "frappe.client.get",
       args: {
-        doctype: "Price Settings",
+        doctype: "Glass Settings",
         name: frm.doc.glass_type,
       },
       callback: function(data) {
@@ -439,7 +439,7 @@ function get_price_settings(frm) {
     frappe.call({
       "method": "frappe.client.get",
       args: {
-        doctype: "Price Settings",
+        doctype: "Glass Settings",
         name: frm.doc.glass_type,
       },
       callback: function(data) {
