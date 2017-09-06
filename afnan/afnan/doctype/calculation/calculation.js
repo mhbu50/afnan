@@ -1,7 +1,7 @@
 // Copyright (c) 2016, accurate systems and contributors
 // For license information, please see license.txt
 
-var Price_Settings;
+var Glass_Settings;
 var meter_price = 0;
 var full_beveled = 0;
 var full_letter = 0;
@@ -235,9 +235,9 @@ frappe.ui.form.on("calculation", {
         }
       };
     });
-    //to load Price_Settings data on saved calculation
+    //to load Glass_Settings data on saved calculation
     if (frm.doc.glass_type)
-      get_price_settings(frm);
+      get_glass_settings(frm);
   },
   type: function(frm) {
     if (frm.doc.type === "برواز") {
@@ -316,7 +316,7 @@ frappe.ui.form.on("calculation", {
       });
   },
   is_for_borad: function(frm) {
-    get_price_settings(frm);
+    get_glass_settings(frm);
     if (frm.doc.b_height === undefined || frm.doc.b_width === undefined) {
       frappe.model.set_value("calculation", frm.doc.name, "is_for_borad", 0);
       msgprint("الرجاء ادخال الطول و العرض للوحة قبل اختيار الزجاج لها");
@@ -390,12 +390,12 @@ function do_glass_type(frm) {
       },
       callback: function(data) {
         if (data.message) {
-          Price_Settings = data.message;
-          meter_price = frm.doc.g_area * Price_Settings.price_square;
-          beveled_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Price_Settings.beveled_letter;
-          full_beveled = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Price_Settings.beveled;
-          full_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Price_Settings.letter;
-          anti_braek = frm.doc.g_area * Price_Settings.anti_braek;
+          Glass_Settings = data.message;
+          meter_price = frm.doc.g_area * Glass_Settings.price_square;
+          beveled_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Glass_Settings.beveled_letter;
+          full_beveled = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Glass_Settings.beveled;
+          full_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Glass_Settings.letter;
+          anti_braek = frm.doc.g_area * Glass_Settings.anti_braek;
           update_total_g_price(frm);
         }
       }
@@ -408,9 +408,9 @@ function update_total_g_price(frm) {
   frm.doc.g_circumference = ((frm.doc.g_width + frm.doc.g_height) * 2) / 10000;
   // frm.doc.g_area = frm.doc.g_height * frm.doc.g_width;
   frm.doc.g_area = (frm.doc.g_width * frm.doc.g_height) / 10000;
-  if (Price_Settings !== undefined) {
-    anti_braek = frm.doc.g_area * Price_Settings.anti_braek;
-    meter_price = frm.doc.g_area * Price_Settings.price_square;
+  if (Glass_Settings !== undefined) {
+    anti_braek = frm.doc.g_area * Glass_Settings.anti_braek;
+    meter_price = frm.doc.g_area * Glass_Settings.price_square;
   }
   total = meter_price;
 
@@ -429,12 +429,13 @@ function update_total_g_price(frm) {
 function update_final_price(frm) {
   console.log("frm.doc.total_f_price = " + frm.doc.total_f_price + " frm.doc.total_m_price = " +
   frm.doc.total_m_price + " frm.doc.total_g_price = " + frm.doc.total_g_price);
-  frappe.model.set_value("calculation", frm.doc.name, "price", parseFloat(frm.doc.total_f_price) +
+  frm.set_value("price", parseFloat(frm.doc.total_f_price) +
   parseFloat(frm.doc.total_m_price) + parseFloat(frm.doc.total_g_price));
   frm.refresh_field("price");
+ // make loop for sum of works
 }
 
-function get_price_settings(frm) {
+function get_glass_settings(frm) {
   if (frm.doc.glass_type !== undefined) {
     frappe.call({
       "method": "frappe.client.get",
@@ -444,13 +445,13 @@ function get_price_settings(frm) {
       },
       callback: function(data) {
         if (data.message) {
-          Price_Settings = data.message;
-          console.log("frm.doc.g_area = " + frm.doc.g_area + " Price_Settings.price_square = " + Price_Settings.price_square);
-          meter_price = frm.doc.g_area * Price_Settings.price_square;
-          beveled_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Price_Settings.beveled_letter;
-          full_beveled = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Price_Settings.beveled;
-          full_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Price_Settings.letter;
-          anti_braek = frm.doc.g_area * Price_Settings.anti_braek;
+          Glass_Settings = data.message;
+          console.log("frm.doc.g_area = " + frm.doc.g_area + " Glass_Settings.price_square = " + Glass_Settings.price_square);
+          meter_price = frm.doc.g_area * Glass_Settings.price_square;
+          beveled_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Glass_Settings.beveled_letter;
+          full_beveled = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Glass_Settings.beveled;
+          full_letter = ((frm.doc.g_width * 2 + frm.doc.g_height * 2) / 100) * Glass_Settings.letter;
+          anti_braek = frm.doc.g_area * Glass_Settings.anti_braek;
         }
       }
     });
@@ -599,9 +600,9 @@ function do_m_diff(frm) {
       frappe.model.set_value("Sub Mating", arr[i].name, "mating_price", h / 100 * w / 100 * arr[i].sub_m_price);
       sum_diff = sum_diff + arr[i].m_diff * 2;
     }
-    var v_mating_price = 0;
-    v_mating_price = (frm.doc.in_h + sum_diff) / 100 * (frm.doc.in_w + sum_diff) / 100 * frm.doc.mating_price;
-    frappe.model.set_value("calculation", frm.doc.name, "m_price", v_mating_price);
+    // var v_mating_price = 0;
+    // v_mating_price = (frm.doc.in_h + sum_diff) / 100 * (frm.doc.in_w + sum_diff) / 100 * frm.doc.mating_price;
+    // frappe.model.set_value("calculation", frm.doc.name, "m_price", v_mating_price);
     update_total_m_price(frm);
     calc_in_h(frm);
     calc_in_w(frm);
@@ -615,27 +616,27 @@ function calc_glass_operation(frm) {
     //console.log("d", d);
     if (d.beveled && !d.letter) {
       if (d.side == "أعلى" || d.side == "أسفل") {
-        price = price + (Price_Settings.beveled * frm.doc.g_width) / 100;
+        price = price + (Glass_Settings.beveled * frm.doc.g_width) / 100;
       } else if (d.side == "يمين" || d.side == "يسار") {
-        price = price + (Price_Settings.beveled * frm.doc.g_height) / 100;
+        price = price + (Glass_Settings.beveled * frm.doc.g_height) / 100;
       }
     }
     if (d.letter && !d.beveled) {
       if (d.side == "أعلى" || d.side == "أسفل") {
-        price = price + (Price_Settings.letter * frm.doc.g_width) / 100;
+        price = price + (Glass_Settings.letter * frm.doc.g_width) / 100;
       } else if (d.side == "يمين" || d.side == "يسار") {
-        price = price + (Price_Settings.letter * frm.doc.g_height) / 100;
+        price = price + (Glass_Settings.letter * frm.doc.g_height) / 100;
       }
     }
     if (d.beveled && d.letter) {
       if (d.side == "أعلى" || d.side == "أسفل") {
-        price = price + (Price_Settings.beveled_letter * frm.doc.g_width) / 100;
+        price = price + (Glass_Settings.beveled_letter * frm.doc.g_width) / 100;
       } else if (d.side == "يمين" || d.side == "يسار") {
-        price = price + (Price_Settings.beveled_letter * frm.doc.g_height) / 100;
+        price = price + (Glass_Settings.beveled_letter * frm.doc.g_height) / 100;
       }
     }
     if (d.security) {
-      price = price + Price_Settings.security;
+      price = price + Glass_Settings.security;
     }
   });
   return price;
