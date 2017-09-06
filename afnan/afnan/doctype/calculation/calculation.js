@@ -88,6 +88,7 @@ function check_h_w(frm) {
 
 frappe.ui.form.on("calculation", {
   onload_post_render: function() {
+    console.log("in onload_post_render");
     var section_head = $('.section-head').find("a").filter(
       function() {
         return $(this).text() == "ماتنق";
@@ -264,6 +265,8 @@ frappe.ui.form.on("calculation", {
     do_m_diff(frm);
     update_total_m_price(frm);
     check_h_w(frm);
+
+    frm.trigger("recalculate_frames");
     frappe.model.set_value("calculation", frm.doc.name, "b_area", (frm.doc.b_width * frm.doc.b_height) / 100);
     frappe.model.set_value("calculation", frm.doc.name, "b_circumference", ((frm.doc.b_width + frm.doc.b_height) * 2) / 100);
   },
@@ -377,6 +380,10 @@ frappe.ui.form.on("calculation", {
     console.log("frm.doc.tot = ", frm.doc.tot + " (frm.doc.discount /100) = " + (frm.doc.tot * frm.doc.discount / 100));
     console.log("frm.doc.tot - (frm.doc.discount /100)", frm.doc.tot - (frm.doc.discount / 100));
     frm.set_value("dis_tot", parseInt(frm.doc.tot - (frm.doc.tot * frm.doc.discount / 100)));
+  },
+  recalculate_frames:function(frm) {
+    console.log("frm",frm);
+
   }
 });
 
@@ -499,7 +506,7 @@ frappe.ui.form.on("Sub Frame", {
 
             if (1 < len) {
               console.log("idx =", row.idx);
-              calc_outers(frm.doc.sub_frame, row.idx);
+              // calc_outers(frm.doc.sub_frame, row.idx);
               frappe.model.set_value("Sub Frame", row.name, "out_height", frm.doc.sub_frame[len - 2].out_height + data.message.width * 2);
               frappe.model.set_value("Sub Frame", row.name, "out_width", frm.doc.sub_frame[len - 2].out_width + data.message.width * 2);
               frm.refresh_field("out_height");
