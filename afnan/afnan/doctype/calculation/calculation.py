@@ -12,19 +12,6 @@ from frappe.model.document import Document
 
 
 class calculation(Document):
-    # def validate(self):
-    #     self.price = 0
-    #     if self.type == "كانفاس":
-    #         if self.wood == "4x2":
-    #             wood = 2 * 15
-    #         elif self.wood == "2x4":
-    #             wood = 3 * 13
-    #         else:
-    #             wood = 2 * 23
-    #         canvas_price = (
-    #             (self.c_height + 10) / 100 * (self.c_width + 10) / 100) * 65
-    #         wood_price = (self.c_height / 100 + self.c_width / 100) * wood
-    #         self.price = canvas_price + wood_price + 1
 
     def after_insert(self):
         doc = frappe.get_doc({

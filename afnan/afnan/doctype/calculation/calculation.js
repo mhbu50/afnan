@@ -29,7 +29,7 @@ frappe.ui.form.on("calculation", {
       frm.set_value('in_h', frm.doc.b_height + frm.doc.right + frm.doc.left + (m_diff * 2));
 
       if (frm.doc.is_for_borad == 1) {
-        frappe.model.set_value("calculation", frm.doc.name, "g_height", frm.doc.in_h);
+        frm.set_value("g_height", frm.doc.in_h);
       }
     }
 
@@ -39,7 +39,7 @@ frappe.ui.form.on("calculation", {
       m_diff * 2));
       frm.set_value('in_w', frm.doc.b_width + frm.doc.up + frm.doc.down + (m_diff * 2));
       if (frm.doc.is_for_borad == 1) {
-        frappe.model.set_value("calculation", frm.doc.name, "g_width", frm.doc.in_w);
+        frm.set_value("g_width", frm.doc.in_w);
       }
     }
 
@@ -147,13 +147,14 @@ frappe.ui.form.on("calculation", {
       total = frm.meter_price;
 
       var operation = frm.calc_glass_operation(frm);
+      console.log("operation",operation);
       if (operation) {
         total = total + operation;
       }
       if (frm.doc.anti_braek) {
         total = total + frm.full_letter;
       }
-      frappe.model.set_value("calculation", frm.doc.name, "total_g_price", total);
+      frm.set_value("total_g_price", total);
       frm.refresh_field("total_g_price");
       frm.update_final_price(frm);
     }
@@ -190,8 +191,8 @@ frappe.ui.form.on("calculation", {
     frm.calc_glass_operation = function(frm) {
       var price = 0;
       frm.doc.sides.forEach(function(d) {
-        // debugger;
-        //console.log("d", d);
+        debugger;
+        console.log("d", d);
         if (d.beveled && !d.letter) {
           if (d.side == "أعلى" || d.side == "أسفل") {
             price = price + (frm.Glass_Settings.beveled * frm.doc.g_width) / 100;
@@ -411,8 +412,8 @@ frappe.ui.form.on("calculation", {
     frm.check_h_w(frm);
 
     frm.trigger("recalculate_frames");
-    frappe.model.set_value("calculation", frm.doc.name, "b_area", (frm.doc.b_width * frm.doc.b_height) / 100);
-    frappe.model.set_value("calculation", frm.doc.name, "b_circumference", ((frm.doc.b_width + frm.doc.b_height) * 2) / 100);
+    frm.set_value("b_area", (frm.doc.b_width * frm.doc.b_height) / 100);
+    frm.set_value("b_circumference", ((frm.doc.b_width + frm.doc.b_height) * 2) / 100);
   },
   b_width: function(frm) {
     frm.calc_in_w(frm);
@@ -421,8 +422,8 @@ frappe.ui.form.on("calculation", {
     frm.update_total_m_price(frm);
     frm.check_h_w(frm);
     frm.trigger("recalculate_frames");
-    frappe.model.set_value("calculation", frm.doc.name, "b_area", (frm.doc.b_width * frm.doc.b_height) / 100);
-    frappe.model.set_value("calculation", frm.doc.name, "b_circumference", ((frm.doc.b_width + frm.doc.b_height) * 2) / 100);
+    frm.set_value("b_area", (frm.doc.b_width * frm.doc.b_height) / 100);
+    frm.set_value("b_circumference", ((frm.doc.b_width + frm.doc.b_height) * 2) / 100);
   },
   right: function(frm) {
     frm.calc_in_h(frm);
@@ -467,16 +468,20 @@ frappe.ui.form.on("calculation", {
   is_for_borad: function(frm) {
     frm.get_glass_settings(frm);
     if (frm.doc.b_height === undefined || frm.doc.b_width === undefined) {
-      frappe.model.set_value("calculation", frm.doc.name, "is_for_borad", 0);
+      frm.set_value("is_for_borad", 0);
       msgprint("الرجاء ادخال الطول و العرض للوحة قبل اختيار الزجاج لها");
     }
     if (frm.doc.is_for_borad == 1) {
+      frm.toggle_reqd("glass_type",true);
       console.log("frm.doc.in_h = " + frm.doc.in_h + " frm.doc.in_w = " + frm.doc.in_w);
-      frappe.model.set_value("calculation", frm.doc.name, "g_height", frm.doc.in_h);
-      frappe.model.set_value("calculation", frm.doc.name, "g_width", frm.doc.in_w);
+      frm.set_value("g_height", frm.doc.in_h);
+      frm.set_value("g_width", frm.doc.in_w);
       frm.set_df_property("g_height", "read_only", 1);
       frm.set_df_property("g_width", "read_only", 1);
     } else {
+      frm.toggle_reqd("glass_type",false);
+      frm.set_value("g_height", 0);
+      frm.set_value("g_width", 0);
       frm.set_df_property("g_height", "read_only", 0);
       frm.set_df_property("g_width", "read_only", 0);
     }
@@ -488,16 +493,16 @@ frappe.ui.form.on("calculation", {
     frm.check_h_w(frm);
     frm.do_glass_type(frm);
     // console.log("frm.meter_price =" + frm.meter_price);
-    frappe.model.set_value("calculation", frm.doc.name, "g_area", (frm.doc.g_width * frm.doc.g_height) / 100);
-    frappe.model.set_value("calculation", frm.doc.name, "g_circumference", ((frm.doc.g_width + frm.doc.g_height) * 2) / 100);
+    frm.set_value("g_area", (frm.doc.g_width * frm.doc.g_height) / 100);
+    frm.set_value("g_circumference", ((frm.doc.g_width + frm.doc.g_height) * 2) / 100);
     frm.update_total_g_price(frm);
   },
   g_width: function(frm) {
     frm.check_h_w(frm);
     frm.do_glass_type(frm);
     // console.log("frm.meter_price =" + frm.meter_price);
-    frappe.model.set_value("calculation", frm.doc.name, "g_area", (frm.doc.g_width * frm.doc.g_height) / 100);
-    frappe.model.set_value("calculation", frm.doc.name, "g_circumference", ((frm.doc.g_width + frm.doc.g_height) * 2) / 100);
+    frm.set_value("g_area", (frm.doc.g_width * frm.doc.g_height) / 100);
+    frm.set_value("g_circumference", ((frm.doc.g_width + frm.doc.g_height) * 2) / 100);
     frm.update_total_g_price(frm);
   },
   glass_type: function(frm) {
@@ -519,7 +524,7 @@ frappe.ui.form.on("calculation", {
     }
     frm.canvas_price = ((frm.doc.c_height + 10) / 100 * (frm.doc.c_width + 10) / 100) * 65;
     frm.wood_price = (frm.doc.c_height / 100 + frm.doc.c_width / 100) * frm.wood;
-    frappe.model.set_value("calculation", frm.doc.name, "price", frm.canvas_price + frm.wood_price);
+    frm.set_value("price", frm.canvas_price + frm.wood_price);
   },
   discount: function(frm) {
     console.log("frm.doc.tot = ", frm.doc.tot + " (frm.doc.discount /100) = " + (
@@ -602,8 +607,8 @@ frappe.ui.form.on("Sub Frame", {
             frm.doc.sub_frame.forEach(function(d) {
               total_f_price += d.frame_price;
             });
-            frappe.model.set_value("calculation", frm.doc.name, "total_f_price", total_f_price);
-            frappe.model.set_value("calculation", frm.doc.name, "price", parseFloat(frm.doc.total_m_price + frm.doc.total_f_price));
+            frm.set_value("total_f_price", total_f_price);
+            frm.set_value("price", parseFloat(frm.doc.total_m_price + frm.doc.total_f_price));
             frm.refresh_field("total_f_price");
             frm.refresh_field("price");
             frm.trigger("recalculate_frames");
