@@ -14,18 +14,48 @@ from frappe.model.document import Document
 class calculation(Document):
 
     def after_insert(self):
-        doc = frappe.get_doc({
-            "doctype": "Sub Calculation",
-            "calculation_link": self.name,
-            "work_desc": self.work_desc,
-            "bom": self.bom,
-            "price": self.price,
-            "quantity": 1,
-            "total": self.price,
-            "type": "عمل " + self.type,
-        })
-        self.append("sub_calculation", doc)
-        self.save()
+        if (len(self.sub_calculation) == 0):
+            print "1111111"
+            insert_current_doc(self)
+        else:
+            # insert current doc in sub_calc
+            insert_current_doc(self)
+            print "22222222"
+            sub_calc_list = self.sub_calculation[:]
+            # print "sub_calc_list = {}".format(frappe.as_json(sub_calc_list))
+            for sub_calc in sub_calc_list:
+                print "calculation_link = {} ".format(
+                    frappe.as_json(sub_calc.calculation_link))
+                calc_doc = frappe.get_doc("calculation",
+                                          sub_calc.calculation_link)
+                doc = frappe.get_doc({
+                    "doctype": "Sub Calculation",
+                    "calculation_link": self.name,
+                    "work_desc": self.work_desc,
+                    "bom": self.bom,
+                    "price": self.price,
+                    "quantity": 1,
+                    "total": self.price,
+                    "type": "عمل " + self.type
+                })
+                print "doc ={} \n".format(frappe.as_json(doc))
+                calc_doc.append("sub_calculation", doc)
+                calc_doc.save()
+
+
+def insert_current_doc(self):
+    doc = frappe.get_doc({
+        "doctype": "Sub Calculation",
+        "calculation_link": self.name,
+        "work_desc": self.work_desc,
+        "bom": self.bom,
+        "price": self.price,
+        "quantity": 1,
+        "total": self.price,
+        "type": "عمل " + self.type,
+    })
+    self.append("sub_calculation", doc)
+    self.save()
 
     def on_update(self):
         sub_calc_list = frappe.get_list(
