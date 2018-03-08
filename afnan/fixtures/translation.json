@@ -1,0 +1,722 @@
+[
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:33:24.935671", 
+  "name": "30f08c1867", 
+  "source_name": "Price Setting", 
+  "target_name": "\u0627\u0639\u062f\u0627\u062f \u0627\u0644\u0627\u0633\u0639\u0627\u0631"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:33:03.090632", 
+  "name": "dddf66cb4c", 
+  "source_name": "Afnan", 
+  "target_name": "\u0627\u0641\u0646\u0627\u0646"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": null, 
+  "modified": "2016-11-26 16:41:58.760283", 
+  "name": "feaf59788a", 
+  "source_name": "CAL0000002", 
+  "target_name": "\u064a\u064a\u064a\u064a\u064a\u064a\u064a\u064a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": null, 
+  "modified": "2016-11-26 16:42:21.988923", 
+  "name": "b62f036723", 
+  "source_name": "CAL0000002", 
+  "target_name": "\u064a\u064a\u064a\u064a\u064a\u064a\u064a\u064a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:32:49.939639", 
+  "name": "996489216f", 
+  "source_name": "Record", 
+  "target_name": "\u0627\u0644\u0645\u0633\u062a\u0646\u062f\u0627\u062a \u0627\u0644\u0631\u0633\u0645\u064a\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:32:39.028616", 
+  "name": "5dd6b59d48", 
+  "source_name": "Records Management", 
+  "target_name": "\u0627\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0633\u062a\u0646\u062f\u0627\u062a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:31:25.507560", 
+  "name": "650ce2daa4", 
+  "source_name": "Record Type", 
+  "target_name": "\u0646\u0648\u0639 \u0627\u0644\u0645\u0633\u062a\u0646\u062f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:31:15.223561", 
+  "name": "e00a34f98c", 
+  "source_name": "Record Number", 
+  "target_name": "\u0631\u0642\u0645 \u0627\u0644\u0645\u0633\u062a\u0646\u062f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:31:06.784315", 
+  "name": "c92987a915", 
+  "source_name": "Record Statement", 
+  "target_name": "\u0628\u064a\u0627\u0646 \u0627\u0644\u0645\u0633\u062a\u0646\u062f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:30:55.666525", 
+  "name": "c7f02e1541", 
+  "source_name": "Reminder Date", 
+  "target_name": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u062a\u0630\u0643\u064a\u0631"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:30:40.708656", 
+  "name": "32fa712bf8", 
+  "source_name": "Issuer", 
+  "target_name": "\u0627\u0644\u062c\u0647\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:30:26.337871", 
+  "name": "58cb542a72", 
+  "source_name": "Expiry Date", 
+  "target_name": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0627\u0646\u062a\u0647\u0627\u0621"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:29:26.002035", 
+  "name": "2cca429eda", 
+  "source_name": "calculation", 
+  "target_name": "\u0627\u0644\u0642\u064a\u0627\u0633\u0627\u062a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 10:32:11.073376", 
+  "name": "7df8221652", 
+  "source_name": "Review", 
+  "target_name": "\u062a\u062d\u062a \u0627\u0644\u0645\u0631\u0627\u062c\u0639\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:18:35.108672", 
+  "name": "e611b77653", 
+  "source_name": "Type of Work", 
+  "target_name": "\u0646\u0648\u0639 \u0627\u0644\u0639\u0645\u0644"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:19:22.721006", 
+  "name": "069f5d7505", 
+  "source_name": "Work Description", 
+  "target_name": "\u0648\u0635\u0641 \u0627\u0644\u0639\u0645\u0644"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:21:17.112075", 
+  "name": "1497224cef", 
+  "source_name": "Dimensions of the Painting", 
+  "target_name": "\u0627\u0628\u0639\u0627\u062f \u0627\u0644\u0644\u0648\u062d\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:21:51.661291", 
+  "name": "94f74dae90", 
+  "source_name": "Painting Length", 
+  "target_name": "\u0637\u0648\u0644 \u0627\u0644\u0644\u0648\u062d\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:25:45.901730", 
+  "name": "bfdac4c3f2", 
+  "source_name": "Painting Area", 
+  "target_name": "\u0645\u0633\u0627\u062d\u0629 \u0627\u0644\u0644\u0648\u062d\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:26:06.746410", 
+  "name": "86fd00fae6", 
+  "source_name": "Quantity", 
+  "target_name": "\u0627\u0644\u0643\u0645\u064a\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:32:19.998230", 
+  "name": "73042f4a54", 
+  "source_name": "Painting Width", 
+  "target_name": "\u0639\u0631\u0636 \u0627\u0644\u0644\u0648\u062d\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:34:01.160296", 
+  "name": "dc23e3530b", 
+  "source_name": "Painting circumference", 
+  "target_name": "\u0645\u062d\u064a\u0637 \u0627\u0644\u0644\u0648\u062d\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:45:00.035397", 
+  "name": "2365aad4c0", 
+  "source_name": "Mating", 
+  "target_name": "\u0645\u0627\u062a\u0646\u0642"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:50:59.100238", 
+  "name": "65b097b1cc", 
+  "source_name": "Mating Type", 
+  "target_name": "\u0646\u0648\u0639 \u0627\u0644\u0645\u0627\u062a\u0646\u0642"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:52:59.918726", 
+  "name": "62ead89263", 
+  "source_name": "Top", 
+  "target_name": "\u0627\u0639\u0644\u0649"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:53:33.309683", 
+  "name": "67b99afd65", 
+  "source_name": "Right", 
+  "target_name": "\u064a\u0645\u064a\u0646"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:55:24.262078", 
+  "name": "7ff75b569c", 
+  "source_name": "Mating Price", 
+  "target_name": "\u0633\u0639\u0631 \u0627\u0644\u0645\u0627\u062a\u0646\u0642"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:56:01.134176", 
+  "name": "8c26003f5c", 
+  "source_name": "Meter Price", 
+  "target_name": "\u0633\u0639\u0631 \u0627\u0644\u0645\u062a\u0631"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:56:22.793973", 
+  "name": "fa32beb45c", 
+  "source_name": "Bottom", 
+  "target_name": "\u0623\u0633\u0641\u0644"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:56:46.914190", 
+  "name": "90463704d1", 
+  "source_name": "Left", 
+  "target_name": "\u064a\u0633\u0627\u0631"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 11:59:13.894506", 
+  "name": "e18ec09620", 
+  "source_name": "Add Mating", 
+  "target_name": "\u0623\u0636\u0627\u0641\u0629 \u0645\u0627\u062a\u0646\u0642"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:02:57.760640", 
+  "name": "cc523147d3", 
+  "source_name": "Total Price of Mating", 
+  "target_name": "\u0645\u062c\u0645\u0648\u0639 \u0633\u0639\u0631 \u0627\u0644\u0645\u0627\u062a\u0646\u0642"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:05:59.389254", 
+  "name": "d4e67a4267", 
+  "source_name": "Frame", 
+  "target_name": "\u0628\u0631\u0648\u0627\u0632"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:06:49.379884", 
+  "name": "69f4cbddf4", 
+  "source_name": "Total Price of Frame", 
+  "target_name": "\u0645\u062c\u0645\u0648\u0639 \u0633\u0639\u0631 \u0627\u0644\u0628\u0631\u0648\u0627\u0632"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:07:10.659722", 
+  "name": "09058209d9", 
+  "source_name": "Measurements", 
+  "target_name": "\u0627\u0644\u0642\u064a\u0627\u0633\u0627\u062a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:08:30.772771", 
+  "name": "af5e49023e", 
+  "source_name": "Outer Length", 
+  "target_name": "\u0627\u0644\u0637\u0648\u0644 \u0627\u0644\u062e\u0627\u0631\u062c\u064a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:09:32.824170", 
+  "name": "59fe9cf9d7", 
+  "source_name": "Internal Length", 
+  "target_name": "\u0627\u0644\u0637\u0648\u0644 \u0627\u0644\u062f\u0627\u062e\u0644\u064a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:10:10.516125", 
+  "name": "cd6d3ddd04", 
+  "source_name": "External Width", 
+  "target_name": "\u0627\u0644\u0639\u0631\u0636 \u0627\u0644\u062e\u0627\u0631\u062c\u064a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:12:17.970393", 
+  "name": "d66594b83a", 
+  "source_name": "Internal Width", 
+  "target_name": "\u0627\u0644\u0639\u0631\u0636 \u0627\u0644\u062f\u0627\u062e\u0644\u064a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:19:02.428386", 
+  "name": "a00996eb04", 
+  "source_name": "Measurements of Canvas", 
+  "target_name": "\u0642\u064a\u0627\u0633\u0627\u062a \u0627\u0644\u0643\u0627\u0646\u0641\u0627\u0633"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:48:20.061362", 
+  "name": "4e5a5e4de8", 
+  "source_name": "Canvas Length", 
+  "target_name": "\u0637\u0648\u0644 \u0627\u0644\u0643\u0627\u0646\u0641\u0627\u0633"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:50:19.295799", 
+  "name": "281f3b7418", 
+  "source_name": "Type of Canvas", 
+  "target_name": "\u0646\u0648\u0639 \u0627\u0644\u0643\u0627\u0646\u0641\u0627\u0633"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:54:58.878487", 
+  "name": "4a59f37781", 
+  "source_name": "Width of Canvas", 
+  "target_name": "\u0639\u0631\u0636 \u0627\u0644\u0643\u0627\u0646\u0641\u0627\u0633"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:56:04.343499", 
+  "name": "74341557ff", 
+  "source_name": "Wood Type", 
+  "target_name": "\u0646\u0648\u0639 \u0627\u0644\u062e\u0634\u0628"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 12:59:02.495055", 
+  "name": "0a8ba0ab98", 
+  "source_name": "Glass measurements", 
+  "target_name": "\u0642\u064a\u0627\u0633\u0627\u062a \u0627\u0644\u0632\u062c\u0627\u062c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:03:52.369620", 
+  "name": "c97c1cb1e5", 
+  "source_name": "Linked with Painting", 
+  "target_name": "\u0645\u0631\u062a\u0628\u0637 \u0645\u0639 \u0644\u0648\u062d\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:06:37.050578", 
+  "name": "1cf0fbb3a5", 
+  "source_name": "Glass Length", 
+  "target_name": "\u0637\u0648\u0644 \u0627\u0644\u0632\u062c\u0627\u062c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:07:12.656108", 
+  "name": "95d4bfd4a7", 
+  "source_name": "Glass Area", 
+  "target_name": "\u0645\u0633\u0627\u062d\u0629 \u0627\u0644\u0632\u062c\u0627\u062c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:09:41.694974", 
+  "name": "489965ac43", 
+  "source_name": "Anti Break", 
+  "target_name": "\u0636\u062f \u0627\u0644\u0643\u0633\u0631"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:14:54.847392", 
+  "name": "e40282631e", 
+  "source_name": "Glass type", 
+  "target_name": "\u0646\u0648\u0639 \u0627\u0644\u0632\u062c\u0627\u062c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:16:07.492605", 
+  "name": "9b762c3602", 
+  "source_name": "Glass Width", 
+  "target_name": "\u0639\u0631\u0636 \u0627\u0644\u0632\u062c\u0627\u062c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:17:15.649532", 
+  "name": "4bdcba8fba", 
+  "source_name": "Glass Circumference", 
+  "target_name": "\u0645\u062d\u064a\u0637 \u0627\u0644\u0632\u062c\u0627\u062c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:20:11.465863", 
+  "name": "3088b16881", 
+  "source_name": "Entities", 
+  "target_name": "\u0627\u0644\u062c\u0647\u0627\u062a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:26:15.011164", 
+  "name": "625f33c38f", 
+  "source_name": "Total Glass Price", 
+  "target_name": "\u0645\u062c\u0645\u0648\u0639 \u0633\u0639\u0631 \u0627\u0644\u0632\u062c\u0627\u062c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:38:10.245815", 
+  "name": "dfd07ad12f", 
+  "source_name": "Price of work", 
+  "target_name": "\u0633\u0639\u0631 \u0627\u0644\u0639\u0645\u0644"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:40:14.394563", 
+  "name": "768d4aa59f", 
+  "source_name": "Bill of Material", 
+  "target_name": "\u062c\u062f\u0648\u0644 \u0627\u0644\u0645\u0648\u0627\u062f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:45:01.627879", 
+  "name": "1a21e6100f", 
+  "source_name": "Total of Works", 
+  "target_name": "\u0645\u062c\u0645\u0648\u0639 \u0627\u0644\u0627\u0639\u0645\u0627\u0644"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:51:58.275983", 
+  "name": "da50e36811", 
+  "source_name": "Grand Total", 
+  "target_name": "\u0627\u0644\u0645\u062c\u0645\u0648\u0639"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:55:30.341828", 
+  "name": "43373ee0c1", 
+  "source_name": "Discount", 
+  "target_name": "\u0627\u0644\u062e\u0635\u0645"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 13:56:38.359414", 
+  "name": "530af557d9", 
+  "source_name": "Price after discount", 
+  "target_name": "\u0627\u0644\u0633\u0639\u0631 \u0628\u0639\u062f \u0627\u0644\u062e\u0635\u0645"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 14:08:37.133390", 
+  "name": "e82a72accc", 
+  "source_name": "BOM", 
+  "target_name": "\u0641\u0627\u062a\u0648\u0631\u0629 \u0627\u0644\u0645\u0648\u0627\u062f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 14:23:24.181708", 
+  "name": "610f771eca", 
+  "source_name": "Price", 
+  "target_name": "\u0627\u0644\u0633\u0639\u0631"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 14:25:10.597353", 
+  "name": "1ca070b7ed", 
+  "source_name": "Side", 
+  "target_name": "\u0627\u0644\u062c\u0647\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 14:26:38.316373", 
+  "name": "a8bc685703", 
+  "source_name": "Rinse", 
+  "target_name": "\u0634\u0637\u0641"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 14:39:59.410176", 
+  "name": "371d2ea674", 
+  "source_name": "Breaking Character", 
+  "target_name": "\u0643\u0633\u0631 \u062d\u0631\u0641"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 14:51:41.318055", 
+  "name": "375eba0967", 
+  "source_name": "Rinse Angle", 
+  "target_name": "\u062d\u0641 \u0632\u0627\u0648\u064a\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 14:56:35.446119", 
+  "name": "1eb0ecf242", 
+  "source_name": "Mating difference", 
+  "target_name": "\u0641\u0631\u0642 \u0627\u0644\u0645\u0627\u062a\u0646\u0642"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:01:05.952592", 
+  "name": "1e6fcda884", 
+  "source_name": "The difference", 
+  "target_name": "\u0627\u0644\u0641\u0631\u0642"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:04:49.783135", 
+  "name": "983d4220ab", 
+  "source_name": "Type of frame", 
+  "target_name": "\u0646\u0648\u0639 \u0627\u0644\u0628\u0631\u0648\u0627\u0632"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:06:22.688163", 
+  "name": "a189e459e7", 
+  "source_name": "Frame Width", 
+  "target_name": "\u0639\u0631\u0636 \u0627\u0644\u0628\u0631\u0648\u0627\u0632"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:08:14.937084", 
+  "name": "6dea1d1b0b", 
+  "source_name": "External dimension", 
+  "target_name": "\u0627\u0644\u0628\u0639\u062f \u0627\u0644\u062e\u0627\u0631\u062c\u064a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:09:30.169981", 
+  "name": "9e6849f860", 
+  "source_name": "Length", 
+  "target_name": "\u0627\u0644\u0637\u0648\u0644"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:12:48.829341", 
+  "name": "63c6d2f8db", 
+  "source_name": "Width", 
+  "target_name": "\u0627\u0644\u0639\u0631\u0636"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:13:59.530265", 
+  "name": "6f5867d37d", 
+  "source_name": "Frame Price", 
+  "target_name": "\u0633\u0639\u0631 \u0627\u0644\u0628\u0631\u0648\u0627\u0632"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:14:50.165564", 
+  "name": "fca049e1c6", 
+  "source_name": "Used Meters", 
+  "target_name": "\u0627\u0644\u0623\u0645\u062a\u0627\u0631 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645\u0629"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:15:52.673324", 
+  "name": "52d6e5f5b0", 
+  "source_name": "Product", 
+  "target_name": "\u0627\u0644\u0645\u0646\u062a\u062c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:21:54.493190", 
+  "name": "377b131414", 
+  "source_name": "Rinse with broken letter", 
+  "target_name": "\u0634\u0637\u0641 \u0645\u0639 \u0643\u0633\u0631 \u062d\u0631\u0641"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:26:23.672926", 
+  "name": "e6713bd54e", 
+  "source_name": "Circular", 
+  "target_name": "\u062f\u0627\u0626\u0631\u064a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:26:56.734996", 
+  "name": "cfc91f586b", 
+  "source_name": "Price per square meter", 
+  "target_name": "\u0633\u0639\u0631 \u0627\u0644\u0645\u062a\u0631 \u0627\u0644\u0645\u0631\u0628\u0639"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "ar", 
+  "modified": "2018-03-07 15:31:44.603602", 
+  "name": "fd972e391d", 
+  "source_name": "Secure", 
+  "target_name": "\u0633\u0643\u064a\u0648\u0631\u062a"
+ }
+]
