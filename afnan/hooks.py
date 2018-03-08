@@ -11,7 +11,7 @@ app_color = "grey"
 app_email = "mohammed.r@accuratesystems.com.sa"
 app_license = "GPL"
 
-fixtures = [ 
+fixtures = [ "Translation",
 {
 	"doctype": "Print Format",
 	"filters":	{
