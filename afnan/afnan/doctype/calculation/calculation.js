@@ -458,7 +458,9 @@ frappe.ui.form.on("calculation", {
         },
         callback: function(data) {
           if (data.message) {
-            frappe.model.set_value("calculation", frm.doc.name, "mating_price", data.message.price_list_rate);
+            frm.set_value("mating_price", data.message.price_list_rate);
+            frm.calc_mating_price(frm);
+            frm.update_total_m_price(frm);
             frm.refresh_field("mating_price");
           }
         }
