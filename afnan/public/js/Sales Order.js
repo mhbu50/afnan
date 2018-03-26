@@ -6,7 +6,7 @@ frappe.provide("erpnext.selling");
 frappe.ui.form.on("Sales Order", {
     onload: function(frm) {
         if (frm.doc.__islocal) {
-            frappe.model.set_value("Sales Order", frm.doc.name, "customer", "عميل عابر");
+            // frappe.model.set_value("Sales Order", frm.doc.name, "customer", "عميل عابر");
             frm.toggle_display("print_barcode", false);
         } else {
             frm.toggle_display("print_barcode", true);
