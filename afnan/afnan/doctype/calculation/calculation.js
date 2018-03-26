@@ -619,6 +619,7 @@ frappe.ui.form.on("Sub Frame", {
       });
 
       //to refresh exist row
+      var frame_width;
       setTimeout(function() {
         $.each(frm.doc.sub_frame, function(key, value) {
           console.log("row " + parseInt(key + 1) + ": ", value);

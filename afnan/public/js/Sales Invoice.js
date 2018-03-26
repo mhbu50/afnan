@@ -1,7 +1,7 @@
 frappe.ui.form.on("Sales Invoice", {
     onload: function(frm) {
         if (frm.doc.__islocal) {
-            frappe.model.set_value("Sales Invoice", frm.doc.name, "customer", "عميل عابر");
+            // frappe.model.set_value("Sales Invoice", frm.doc.name, "customer", "عميل عابر");
             frm.toggle_display("print_barcode", false);
 
         } else {
