@@ -538,7 +538,7 @@ frappe.ui.form.on("calculation", {
     if(frm.doc.sub_frame){
       let sum_frame_width = 0;
       frm.doc.sub_frame.forEach(function(d) {
-        sum_frame_width += d.frame_width;
+        sum_frame_width += d.frame_width * 2;
       });
       frm.set_value("out_h", sum_frame_width + frm.doc.b_height);
       frm.set_value("out_w", sum_frame_width + frm.doc.b_width);
