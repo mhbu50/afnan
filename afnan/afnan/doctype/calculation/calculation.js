@@ -36,7 +36,7 @@ frappe.ui.form.on("calculation", {
     frm.calc_in_w = function(frm) {
       var m_diff = frm.get_m_diff(frm);
       console.log("frm.doc.b_width = " + frm.doc.b_width + "frm.doc.up = " + frm.doc.up + " (m_diff * 2) = " + (
-      m_diff * 2));
+        m_diff * 2));
       frm.set_value('in_w', frm.doc.b_width + frm.doc.up + frm.doc.down + (m_diff * 2));
       if (frm.doc.is_for_borad == 1) {
         frm.set_value("g_width", frm.doc.in_w);
@@ -147,7 +147,7 @@ frappe.ui.form.on("calculation", {
       total = frm.meter_price;
 
       var operation = frm.calc_glass_operation(frm);
-      console.log("operation",operation);
+      console.log("operation", operation);
       if (operation) {
         total = total + operation;
       }
@@ -179,7 +179,7 @@ frappe.ui.form.on("calculation", {
             }
           }
         });
-      }
+    }
 
     frm.update_final_price = function(frm) {
       console.log("frm.doc.total_f_price = " + frm.doc.total_f_price + " frm.doc.total_m_price = " + frm.doc.total_m_price + " frm.doc.total_g_price = " + frm.doc.total_g_price);
@@ -272,7 +272,7 @@ frappe.ui.form.on("calculation", {
             row = frm.add_child("sub_calculation")
             row.calculation_link = d.calculation_link;
             row.work_desc = d.work_desc,
-            row.price = d.price;
+              row.price = d.price;
             row.bom = d.bom;
             row.quantity = d.quantity;
             row.total = d.total;
@@ -330,8 +330,7 @@ frappe.ui.form.on("calculation", {
       return {
         "filters": {
           "item_group": [
-            "in",
-            [
+            "in", [
               "ماتنق", "جلد و قماش"
             ]
           ]
@@ -343,8 +342,7 @@ frappe.ui.form.on("calculation", {
       return {
         "filters": {
           "item_group": [
-            "in",
-            [
+            "in", [
               "ماتنق", "جلد و قماش"
             ]
           ]
@@ -356,8 +354,7 @@ frappe.ui.form.on("calculation", {
       return {
         "filters": {
           "item_group": [
-            "in",
-            [
+            "in", [
               "برواز بلاستك", "برواز خشب"
             ]
           ]
@@ -383,8 +380,7 @@ frappe.ui.form.on("calculation", {
     //to load frm.Glass_Settings data on saved calculation
     if (frm.doc.glass_type)
       frm.get_glass_settings(frm);
-    }
-  ,
+  },
   type: function(frm) {
     if (frm.doc.type === "برواز") {
       frm.toggle_reqd("b_width", true);
@@ -412,7 +408,7 @@ frappe.ui.form.on("calculation", {
     frm.check_h_w(frm);
 
     frm.trigger("recalculate_frames");
-    frm.set_value("b_area", (frm.doc.b_width * frm.doc.b_height) / 100);
+    frm.set_value("b_area", (frm.doc.b_width * frm.doc.b_height) / 10000);
     frm.set_value("b_circumference", ((frm.doc.b_width + frm.doc.b_height) * 2) / 100);
   },
   b_width: function(frm) {
@@ -465,8 +461,7 @@ frappe.ui.form.on("calculation", {
           }
         }
       });
-    }
-  ,
+  },
   is_for_borad: function(frm) {
     frm.get_glass_settings(frm);
     if (frm.doc.b_height === undefined || frm.doc.b_width === undefined) {
@@ -474,14 +469,14 @@ frappe.ui.form.on("calculation", {
       msgprint("الرجاء ادخال الطول و العرض للوحة قبل اختيار الزجاج لها");
     }
     if (frm.doc.is_for_borad == 1) {
-      frm.toggle_reqd("glass_type",true);
+      frm.toggle_reqd("glass_type", true);
       console.log("frm.doc.in_h = " + frm.doc.in_h + " frm.doc.in_w = " + frm.doc.in_w);
       frm.set_value("g_height", frm.doc.in_h);
       frm.set_value("g_width", frm.doc.in_w);
       frm.set_df_property("g_height", "read_only", 1);
       frm.set_df_property("g_width", "read_only", 1);
     } else {
-      frm.toggle_reqd("glass_type",false);
+      frm.toggle_reqd("glass_type", false);
       frm.set_value("g_height", 0);
       frm.set_value("g_width", 0);
       frm.set_df_property("g_height", "read_only", 0);
@@ -530,19 +525,19 @@ frappe.ui.form.on("calculation", {
   },
   discount: function(frm) {
     console.log("frm.doc.tot = ", frm.doc.tot + " (frm.doc.discount /100) = " + (
-    frm.doc.tot * frm.doc.discount / 100));
+      frm.doc.tot * frm.doc.discount / 100));
     console.log("frm.doc.tot - (frm.doc.discount /100)", frm.doc.tot - (frm.doc.discount / 100));
     frm.set_value("dis_tot", parseInt(frm.doc.tot - (frm.doc.tot * frm.doc.discount / 100)));
   },
   recalculate_frames: function(frm) {
-    if(frm.doc.sub_frame){
+    if (frm.doc.sub_frame) {
       let sum_frame_width = 0;
       frm.doc.sub_frame.forEach(function(d) {
         sum_frame_width += d.frame_width * 2;
       });
       debugger;
-      frm.set_value("out_h", sum_frame_width + frm.doc.in_h );
-      frm.set_value("out_w", sum_frame_width + frm.doc.in_w );
+      frm.set_value("out_h", sum_frame_width + frm.doc.in_h);
+      frm.set_value("out_w", sum_frame_width + frm.doc.in_w);
       frm.refresh_field("out_h");
       frm.refresh_field("out_w");
     }
