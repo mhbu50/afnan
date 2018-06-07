@@ -418,7 +418,7 @@ frappe.ui.form.on("calculation", {
     frm.update_total_m_price(frm);
     frm.check_h_w(frm);
     frm.trigger("recalculate_frames");
-    frm.set_value("b_area", (frm.doc.b_width * frm.doc.b_height) / 100);
+    frm.set_value("b_area", (frm.doc.b_width * frm.doc.b_height) / 10000);
     frm.set_value("b_circumference", ((frm.doc.b_width + frm.doc.b_height) * 2) / 100);
   },
   right: function(frm) {
