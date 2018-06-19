@@ -1,6 +1,6 @@
 ## Afnan
 
-Afnan calculation App
+Afnan Calculation App
 
 #### License
 
